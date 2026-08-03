@@ -1,0 +1,34 @@
+{
+  "downloads": {
+    "story": "/media/story.webp",
+    "peanut-butter": "/media/peanut-butter.webp",
+    "dhathri": "/media/dhathri.webp",
+    "fleet": "/media/fleet.webp",
+    "unsplash-office": "/media/unsplash-office.webp",
+    "unsplash-warehouse": "/media/unsplash-warehouse.webp",
+    "unsplash-retail": "/media/unsplash-retail.webp",
+    "unsplash-meeting": "/media/unsplash-meeting.webp",
+    "unsplash-careers": "/media/unsplash-careers.webp",
+    "unsplash-building": "/media/unsplash-building.webp",
+    "unsplash-store": "/media/unsplash-store.webp",
+    "unsplash-grocery": "/media/unsplash-grocery.webp",
+    "unsplash-cold": "/media/unsplash-cold.webp",
+    "unsplash-containers": "/media/unsplash-containers.webp",
+    "unsplash-delivery": "/media/unsplash-delivery.webp",
+    "unsplash-market": "/media/unsplash-market.webp",
+    "unsplash-handshake": "/media/unsplash-handshake.webp",
+    "unsplash-shop": "/media/unsplash-shop.webp",
+    "unsplash-team": "/media/unsplash-team.webp",
+    "unsplash-desk": "/media/unsplash-desk.webp"
+  },
+  "pngStats": {
+    "converted": 120,
+    "bytesIn": 41419304,
+    "bytesOut": 3882390
+  },
+  "video": {
+    "ok": true,
+    "before": 23360572,
+    "after": 3442520
+  }
+}

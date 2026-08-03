@@ -1,0 +1,24 @@
+{
+  "name": "Five Group Trading",
+  "short_name": "Five Group",
+  "description": "Premium FMCG distribution across Qatar — Rawabi Group division since 2006.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f8f6",
+  "theme_color": "#84b43c",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/og-default.webp",
+      "sizes": "1200x630",
+      "type": "image/webp",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Prefer sitemap for discovery
+Sitemap: https://fivegrouptrading.com/sitemap.xml
+
+# Block Vite internals if ever exposed
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /@vite/
+Disallow: /@fs/
