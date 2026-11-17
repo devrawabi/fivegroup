@@ -230,15 +230,26 @@ export const AWARDS = [
   {
     title: 'Partner recognition events',
     body: 'Ongoing felicitation of leading retail and trade partners for shared growth across Qatar’s FMCG market.',
+    image: '/media/home-award-partner.jpg',
   },
   {
-    title: 'Rawabi Group premium division',
+    title: 'Operational excellence',
     body: 'Recognized within Rawabi Group for specialist FMCG distribution, brand stewardship, and service standards.',
+    image: '/media/home-award-ops.jpg',
   },
   {
     title: 'Category launch excellence',
     body: 'Industry gatherings and exclusive introductions — from wellness lines to better-for-you foods — with top retail partners.',
+    image: '/media/home-award-launch.jpg',
   },
+];
+
+/** Homepage impact figures — kept short for a single strip. */
+export const HOME_IMPACT_STATS = [
+  { label: 'Years', value: '20+' },
+  { label: 'Brands', value: '20+' },
+  { label: 'SKUs', value: '500+' },
+  { label: 'Warehouse', value: '16,000+ sqm' },
 ];
 
 export const DEPT_CONTACTS = [

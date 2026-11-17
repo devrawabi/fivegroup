@@ -1,26 +1,59 @@
 export const ABOUT_OVERVIEW =
-  'Five Group Trading specializes in the import & export of a diverse range of food & non-food products. With a strong focus on FMCG distribution, our unique strength lies in an extensive international supply network & operational efficiency, ensuring prompt & reliable service. We currently manage a vast product portfolio sourced from countries including Italy, India, Spain, Malaysia, Thailand, Vietnam, UAE, Pakistan, Turkey, China, & Bangladesh. By 2030, we aim to stand among Qatar\'s top 10 distributors — driven by global partnerships, strategic acquisitions, & an unyielding standard of excellence.';
+  'A premium Rawabi Group division based in Doha — importing and distributing quality food and non-food FMCG across Qatar with trust, commitment, and operational discipline.';
+
+export const ABOUT_STORY = {
+  eyebrow: 'Our Story',
+  title: 'The Beginning of a Successful Story',
+  paragraphs: [
+    'Founded in 2006 as a premium division of Rawabi Group, Five Group Trading was built to bring super-quality products into Qatari homes, retail shelves, restaurants, and hotels. Today we stand among the region’s committed distribution partners — combining global sourcing with local execution.',
+    'With 500+ product lines and an international supply network spanning 11+ producer nations, we serve thousands of customers through a disciplined warehouse and multi-temperature fleet from Birkat Al Awamer. We are the team that puts trust, commitment, and hard work into one space.',
+    'By 2030, we aim to stand among Qatar’s top 10 distributors — driven by global partnerships, strategic growth, and an unyielding standard of excellence.',
+  ],
+};
 
 export const ABOUT_PILLARS = [
   {
     id: 'vision',
     title: 'Our Vision',
-    body: 'To be Qatar’s most trusted distribution partner, known for reliability, quality, and long-term relationships. We want every customer, from a retail store to a restaurant or a hotel, to know that when they work with Five Group, their supply is in safe hands.',
+    body: 'To be Qatar’s most trusted FMCG distribution partner — known for reliability, quality, and lasting relationships with retailers, hotels, restaurants, and brand principals.',
   },
   {
     id: 'mission',
     title: 'Our Mission',
-    body: 'To source quality FMCG and non-food items from around the world and deliver them to Qatar’s retail stores, restaurants, and hotels on time, every time.',
+    body: 'To source outstanding food and non-food products worldwide and deliver them across Qatar on time, in perfect condition — every order, every door.',
   },
   {
     id: 'values',
-    title: 'Values',
-    body: 'Team Five Group places our employee team as the greatest in every field of work and we value their effort with a true heart.',
+    title: 'Our Values',
+    body: 'Excellence, commitment, reliability, and partnership guide every listing, warehouse movement, and delivery we make.',
   },
   {
     id: 'clients',
-    title: 'Clients',
-    body: 'As this society demands change, we study the market and the clients. To make the relationship with our customers stronger we prioritize them & take updates from them.',
+    title: 'Our Clients',
+    body: 'We study the market, listen closely, and prioritize long-term relationships — so every partner feels supported as demand and assortments evolve.',
+  },
+];
+
+export const ABOUT_VALUES = [
+  {
+    id: 'excellence',
+    title: 'Excellence',
+    body: 'We set a high bar for product integrity, presentation, and service — so principals and retailers can trust what reaches the shelf.',
+  },
+  {
+    id: 'commitment',
+    title: 'Commitment',
+    body: 'From first listing to daily replenishment, we stay accountable to timelines, volumes, and the brand standards our partners expect.',
+  },
+  {
+    id: 'reliability',
+    title: 'Reliability',
+    body: 'Multi-temperature warehousing and a disciplined fleet keep dry, chilled, and frozen goods moving on schedule across Qatar.',
+  },
+  {
+    id: 'partnership',
+    title: 'Partnership',
+    body: 'We grow with our customers and suppliers — sharing market insight, launch support, and transparent commercial collaboration.',
   },
 ];
 
@@ -43,7 +76,7 @@ export const COMPANY_TIMELINE = [
     year: '2006',
     era: 'Origins',
     title: 'Founded in Qatar',
-    desc: 'Established as a premium division of Rawabi Group — paving the way for super-quality FMCG distribution across the Middle East.',
+    desc: 'Established as a premium division of Rawabi Group — paving the way for quality FMCG distribution across the Middle East.',
   },
   {
     year: '2008',
@@ -55,7 +88,7 @@ export const COMPANY_TIMELINE = [
     year: '2012',
     era: 'Brands',
     title: 'International Portfolio',
-    desc: 'Introduced global juice and confectionery lines including Coco Queen and 5Star Fudge to Qatar\'s retail shelves.',
+    desc: 'Introduced global juice and confectionery lines including Coco Queen and 5Star Fudge to Qatar’s retail shelves.',
   },
   {
     year: '2015',
@@ -73,7 +106,7 @@ export const COMPANY_TIMELINE = [
     year: '2020',
     era: 'Logistics',
     title: 'Fleet & Cold Chain',
-    desc: 'Grew a multi-temperature vehicle fleet to move frozen, chilled, and dry goods daily across Qatar\'s retail network.',
+    desc: 'Grew a multi-temperature vehicle fleet to move frozen, chilled, and dry goods daily across Qatar’s retail network.',
   },
   {
     year: '2023',
@@ -91,11 +124,11 @@ export const COMPANY_TIMELINE = [
     year: '2030',
     era: 'Ambition',
     title: 'Top 10 Distributor Goal',
-    desc: 'Targeting a place among Qatar\'s top 10 distributors through global partnerships, strategic acquisitions, and operational excellence.',
+    desc: 'Targeting a place among Qatar’s top 10 distributors through global partnerships, strategic growth, and operational excellence.',
   },
 ];
 
 export const ABOUT_QUOTE = {
-  text: 'We know who our customer is and we\'re a company standing firm with our point of view.',
+  text: 'We know who our customer is and we’re a company standing firm with our point of view.',
   author: 'Ralph Lauren',
 };
