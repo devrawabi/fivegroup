@@ -64,7 +64,8 @@ export default function Hero() {
             loop
             playsInline
             webkit-playsinline="true"
-            preload="auto"
+            preload="metadata"
+            poster="/hero/hero-bg.png"
             className="h-full w-full object-cover"
           >
             <source src="/videos/hero-video.mp4" type="video/mp4" />
@@ -76,9 +77,9 @@ export default function Hero() {
 
         <motion.div
           data-hero-tint="true"
-          initial={{ opacity: 1 }}
+          initial={{ opacity: 0.35 }}
           animate={{ opacity: 0 }}
-          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="pointer-events-none absolute inset-0 bg-navy"
         />
 
@@ -108,7 +109,7 @@ export default function Hero() {
             <motion.h1
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="font-display text-[clamp(1.55rem,3.4vw,3rem)] font-[450] leading-[1.08] tracking-tight text-white"
             >
               <span className="block">An Enterprise Excelling</span>
@@ -118,7 +119,7 @@ export default function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
               className="mt-3 md:mt-4"
               aria-live="polite"
             >
@@ -142,7 +143,7 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.85, delay: 1.15, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
               className="mt-5 max-w-lg text-[0.8125rem] font-light leading-relaxed text-white/75 md:mt-6 md:text-sm md:leading-[1.7]"
             >
               With two decades of expertise, we deliver seamless FMCG distribution across Qatar —

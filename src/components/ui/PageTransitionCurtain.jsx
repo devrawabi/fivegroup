@@ -9,7 +9,8 @@ export function PageTransitionProvider({ children }) {
   const curtainRef = useRef(null);
   const tlRef = useRef(null);
 
-  // Initialize curtain off-screen below viewport matching BGS Law
+  // Keep curtain off-screen on mount. CSS already starts it at translateY(100%)
+  // so first paint is never a solid navy cover (GSAP-only set was too late).
   useEffect(() => {
     if (curtainRef.current) {
       gsap.set(curtainRef.current, { yPercent: 100 });
@@ -83,7 +84,7 @@ export function PageTransitionProvider({ children }) {
         ref={curtainRef}
         aria-hidden={!isTransitioning}
         className="pointer-events-none fixed inset-0 z-[80] bg-[#161833]"
-        style={{ willChange: 'transform' }}
+        style={{ willChange: 'transform', transform: 'translateY(100%)' }}
       />
     </TransitionContext.Provider>
   );

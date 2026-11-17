@@ -60,7 +60,7 @@ export default function WhyFiveGroup() {
     >
       <div className="mx-auto max-w-[1400px]">
         <div className="grid items-start gap-10 md:grid-cols-2 md:gap-12 lg:gap-16">
-          <div>
+          <div className="max-w-2xl">
             <BgsScrollReveal>
               <div className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-muted md:text-xs">
                 {language === 'ar' ? 'لماذا مجموعة الخمسة؟' : 'Why Five Group?'}
@@ -87,86 +87,61 @@ export default function WhyFiveGroup() {
             </BgsScrollReveal>
           </div>
 
-          <BgsScrollReveal delay={0.06}>
-            <div className="border border-navy/20 bg-surface p-4 md:p-5">
-              <div className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
-                {language === 'ar' ? 'شركاء التجزئة والضيافة' : 'Retail & Hospitality Partners'}
-              </div>
-              <div className="relative overflow-hidden">
-                <div
-                  dir="ltr"
-                  className="animate-marquee-track flex w-max gap-3 py-1"
-                  style={{ '--marquee-duration': '48s' }}
-                >
-                  {logos.map((client, index) => (
-                    <div
-                      key={`${client.id}-${index}`}
-                      className="flex h-16 w-16 shrink-0 items-center justify-center border border-line bg-background p-2 sm:h-[4.5rem] sm:w-[4.5rem]"
-                      title={client.name}
-                    >
-                      <img
-                        src={client.image}
-                        alt={client.name}
-                        className="max-h-full max-w-full object-contain grayscale transition-[filter] duration-300 hover:grayscale-0"
-                        loading="lazy"
-                        decoding="async"
-                      />
+          <ul className="m-0 grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 sm:gap-x-6 sm:gap-y-8">
+            {PILLARS.map((item, idx) => {
+              const Icon = item.Icon;
+              return (
+                <BgsScrollReveal as="li" key={item.id} delay={idx * 0.05}>
+                  <div className="flex h-full flex-col">
+                    <div className="mb-3 flex items-center gap-3">
+                      <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-navy text-white">
+                        <Icon className="size-4" strokeWidth={1.75} aria-hidden="true" />
+                      </span>
+                      <span className="font-mono text-xs font-semibold tracking-[0.18em] text-navy">
+                        {item.id}.
+                      </span>
                     </div>
-                  ))}
-                </div>
-              </div>
-              <div className="relative mt-3 overflow-hidden">
-                <div
-                  dir="ltr"
-                  className="animate-marquee-track animate-marquee-track-reverse flex w-max gap-3 py-1"
-                  style={{ '--marquee-duration': '56s' }}
-                >
-                  {logos.map((client, index) => (
-                    <div
-                      key={`${client.id}-row2-${index}`}
-                      className="flex h-16 w-16 shrink-0 items-center justify-center border border-line bg-background p-2 sm:h-[4.5rem] sm:w-[4.5rem]"
-                      title={client.name}
-                    >
-                      <img
-                        src={client.image}
-                        alt=""
-                        className="max-h-full max-w-full object-contain grayscale transition-[filter] duration-300 hover:grayscale-0"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </BgsScrollReveal>
+                    <h3 className="font-display text-base font-semibold tracking-tight text-foreground md:text-lg">
+                      {language === 'ar' ? item.titleAr : item.titleEn}
+                    </h3>
+                    <p className="mt-2 text-sm font-light leading-relaxed text-muted">
+                      {language === 'ar' ? item.bodyAr : item.bodyEn}
+                    </p>
+                  </div>
+                </BgsScrollReveal>
+              );
+            })}
+          </ul>
         </div>
 
-        <ul className="mt-14 m-0 grid list-none gap-8 p-0 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
-          {PILLARS.map((item, idx) => {
-            const Icon = item.Icon;
-            return (
-              <BgsScrollReveal as="li" key={item.id} delay={idx * 0.05}>
-                <div className="flex h-full flex-col">
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-navy text-white">
-                      <Icon className="size-4" strokeWidth={1.75} aria-hidden="true" />
-                    </span>
-                    <span className="font-mono text-xs font-semibold tracking-[0.18em] text-navy">
-                      {item.id}.
-                    </span>
-                  </div>
-                  <h3 className="font-display text-lg font-semibold tracking-tight text-foreground md:text-xl">
-                    {language === 'ar' ? item.titleAr : item.titleEn}
-                  </h3>
-                  <p className="mt-2 text-sm font-light leading-relaxed text-muted">
-                    {language === 'ar' ? item.bodyAr : item.bodyEn}
-                  </p>
+        <BgsScrollReveal delay={0.06}>
+          <div className="relative mt-12 overflow-hidden md:mt-16">
+            <div
+              dir="ltr"
+              className="animate-marquee-track flex w-max gap-8 py-1 md:gap-10"
+              style={{ '--marquee-duration': '48s' }}
+              aria-label={
+                language === 'ar' ? 'شركاء التجزئة والضيافة' : 'Retail & hospitality partners'
+              }
+            >
+              {logos.map((client, index) => (
+                <div
+                  key={`${client.id}-${index}`}
+                  className="flex h-24 w-44 shrink-0 items-center justify-center border border-line bg-background p-2 sm:h-28 sm:w-52 sm:p-2.5 md:h-32 md:w-60 md:p-3"
+                  title={client.name}
+                >
+                  <img
+                    src={client.image}
+                    alt={client.name}
+                    className="h-full w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
-              </BgsScrollReveal>
-            );
-          })}
-        </ul>
+              ))}
+            </div>
+          </div>
+        </BgsScrollReveal>
       </div>
     </section>
   );

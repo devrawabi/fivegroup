@@ -235,7 +235,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
         data-site-header="true"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-50 px-6 transition-all duration-300 md:px-12 ${
           isMenuOpen
             ? 'bg-[#161833]'
