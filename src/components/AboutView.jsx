@@ -1,269 +1,149 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { createPortal } from 'react-dom';
-import { Eye, Heart, Target, Users } from 'lucide-react';
-import ScrollReveal from '@/components/ui/scroll-reveal';
-import { Timeline } from '@/components/ui/timeline';
-import {
-  GradientCard,
-  GradientCardDescription,
-  GradientCardIcon,
-  GradientCardTitle,
-} from '@/components/ui/gradient-card';
+import React from 'react';
 import {
   ABOUT_OVERVIEW,
   ABOUT_PILLARS,
-  ABOUT_QUOTE,
   COMPANY_TIMELINE,
   SOURCE_COUNTRIES,
 } from '../data/about';
-import { AWARDS, HQ_SUMMARY, KEY_STATS } from '../data/companyFacts';
-
-const STORY_IMAGE = '/media/story.webp';
-const CORPORATE_STORY_VIDEO = '/videos/corporate-story.mp4';
-
-const TIMELINE_IMAGES = {
-  '2006': ['/media/unsplash-building.webp', '/media/unsplash-office.webp'],
-  '2008': ['/media/unsplash-store.webp', '/media/unsplash-retail.webp'],
-  '2012': ['/media/unsplash-grocery.webp', '/media/unsplash-retail.webp'],
-  '2015': ['/media/unsplash-warehouse.webp', '/media/unsplash-shipping.webp'],
-  '2018': ['/media/unsplash-cold.webp', '/media/unsplash-containers.webp'],
-  '2020': ['/media/unsplash-truck.webp', '/media/unsplash-delivery.webp'],
-  '2023': ['/media/unsplash-retail.webp', '/media/unsplash-market.webp'],
-  '2025': ['/media/unsplash-handshake.webp', '/media/unsplash-shop.webp'],
-  '2030': ['/media/unsplash-team.webp', '/media/unsplash-desk.webp'],
-};
-
-const TIMELINE_IMG_CLASS =
-  'rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]';
-
-const PILLAR_ICONS = {
-  vision: Eye,
-  mission: Target,
-  values: Heart,
-  clients: Users,
-};
+import { KEY_STATS } from '../data/companyFacts';
 
 export default function AboutView() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const videoRef = useRef(null);
-
-  const timelineData = useMemo(
-    () =>
-      COMPANY_TIMELINE.map((item) => {
-        const images = TIMELINE_IMAGES[item.year] || TIMELINE_IMAGES['2006'];
-        return {
-          title: item.year,
-          content: (
-            <div>
-              <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--brand-lime)] md:text-sm">
-                {item.era}
-              </p>
-              <h4 className="mb-3 text-base font-semibold text-foreground md:text-lg">
-                {item.title}
-              </h4>
-              <p className="mb-8 text-xs font-normal text-muted-foreground md:text-sm">
-                {item.desc}
-              </p>
-              <div className="grid grid-cols-2 gap-4">
-                {images.map((src) => (
-                  <img
-                    key={src}
-                    src={src}
-                    alt={`${item.title} — ${item.era}`}
-                    width={500}
-                    height={500}
-                    className={TIMELINE_IMG_CLASS}
-                    loading="lazy"
-                  />
-                ))}
-              </div>
-            </div>
-          ),
-        };
-      }),
-    [],
-  );
-
-  useEffect(() => {
-    if (!isModalOpen) {
-      if (videoRef.current) {
-        videoRef.current.pause();
-        videoRef.current.currentTime = 0;
-      }
-      return undefined;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-
-    const handleEscape = (event) => {
-      if (event.key === 'Escape') setIsModalOpen(false);
-    };
-
-    window.addEventListener('keydown', handleEscape);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [isModalOpen]);
-
-  const modal = isModalOpen
-    ? createPortal(
-        <div className="modal-overlay" onClick={() => setIsModalOpen(false)} role="presentation">
-          <div
-            className="modal-content modal-content--video"
-            onClick={(e) => e.stopPropagation()}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="about-story-modal-title"
-          >
-            <button type="button" className="modal-close" onClick={() => setIsModalOpen(false)}>
-              ✕
-            </button>
-            <div className="modal-video-frame">
-              <video
-                ref={videoRef}
-                className="modal-video-player"
-                src={CORPORATE_STORY_VIDEO}
-                controls
-                autoPlay
-                playsInline
-                preload="none"
-                title="Five Group Corporate Story"
-              />
-              <p id="about-story-modal-title" className="sr-only">
-                Watch Corporate Story
-              </p>
-            </div>
-          </div>
-        </div>,
-        document.body,
-      )
-    : null;
-
   return (
-    <div className="page-view about-page">
-      <div className="container">
-        <ScrollReveal as="header" className="page-header">
-          <p className="section-eyebrow">About</p>
-          <h1 className="section-title">five group trading</h1>
-          <p className="section-desc about-lead mx-auto text-justify">
-            {ABOUT_OVERVIEW}
-          </p>
-        </ScrollReveal>
+    <div className="bg-background text-foreground">
+      {/* 1. Page Header matching BGS Law (/cabinet) */}
+      <section className="px-6 pt-32 pb-16 md:px-12 md:pt-44 md:pb-24 max-w-[1400px] mx-auto">
+        <div className="mb-4 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted">
+          The Firm · Le Groupe
+        </div>
+        <h1 className="font-display text-[clamp(2.2rem,5vw,4.8rem)] leading-[1.03] tracking-tight font-[450] text-foreground max-w-5xl">
+          <span className="block overflow-hidden pb-[0.14em]">
+            <span className="block">A Shared Vision,</span>
+          </span>
+          <span className="block overflow-hidden pb-[0.14em]">
+            <span className="block">An Enduring Standard of Excellence</span>
+          </span>
+        </h1>
 
-        <ScrollReveal delay={80}>
-          <div className="about-country-tags" aria-label="Source countries">
+        <p className="mt-8 text-base md:text-xl text-muted font-light leading-relaxed max-w-3xl">
+          {ABOUT_OVERVIEW}
+        </p>
+
+        {/* Quick Key Metrics in Monospace */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+          {KEY_STATS.slice(0, 4).map((stat) => (
+            <div key={stat.label} className="bg-background p-6">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-1">
+                {stat.label}
+              </span>
+              <span className="font-display text-2xl font-medium text-foreground">
+                {stat.value}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 2. Institutional Pillars in Swiss Bento Grid */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 bg-surface">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-14">
+            <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+              Foundations · Piliers
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+              Core Principles Guiding Every Operation
+            </h2>
+          </div>
+
+          <div className="grid gap-px bg-line border border-line sm:grid-cols-2 lg:grid-cols-4">
+            {ABOUT_PILLARS.map((pillar, idx) => (
+              <div
+                key={pillar.id}
+                className="bg-background p-8 flex flex-col justify-between hover:bg-surface transition-colors"
+              >
+                <div>
+                  <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="font-display text-xl font-normal text-foreground mb-3">
+                    {pillar.title}
+                  </h3>
+                  <p className="text-sm text-muted font-light leading-relaxed">{pillar.body}</p>
+                </div>
+                <div className="mt-8 pt-4 border-t border-line font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                  Standard Verified
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Global Sourcing Network */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 bg-background">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-12">
+            <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+              International Procurement
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+              Direct Corridors Across 11+ Producer Nations
+            </h2>
+          </div>
+
+          <div className="flex flex-wrap gap-2">
             {SOURCE_COUNTRIES.map((country) => (
-              <span key={country} className="about-country-tag">
+              <span
+                key={country}
+                className="font-mono text-xs uppercase tracking-[0.2em] px-4 py-2.5 bg-surface border border-line text-foreground"
+              >
                 {country}
               </span>
             ))}
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        <ScrollReveal delay={90} className="content-page-highlights about-key-stats">
-          {KEY_STATS.map((item) => (
-            <div key={`${item.label}-${item.value}`} className="content-page-highlight">
-              <span className="content-page-highlight-value">{item.value}</span>
-              <span className="content-page-highlight-label">{item.label}</span>
-            </div>
-          ))}
-        </ScrollReveal>
-
-        <ScrollReveal delay={100}>
-          <div className="about-story-grid">
-            <button
-              type="button"
-              className="about-video-card"
-              style={{ backgroundImage: `url(${STORY_IMAGE})` }}
-              onClick={() => setIsModalOpen(true)}
-              aria-label="Play company story video"
-            >
-              <span className="about-play-btn" aria-hidden="true">
-                <span className="play-arrow" />
-              </span>
-            </button>
-
-            <div className="about-story-copy">
-              <h2>The beginning of a successful story</h2>
-              <p>
-                Founded in 2006 as a premium division of <strong>Rawabi Group</strong>, Five Group
-                stands among the major distribution chains in the Middle East — putting trust,
-                commitment, and work into one space.
-              </p>
-              <p>
-                With 500+ product lines, we bring trusted quality into homes and retail shelves
-                across Qatar through temperature-controlled warehouses and a dedicated distribution
-                fleet.
-              </p>
-              <p>{HQ_SUMMARY}</p>
-            </div>
-          </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={120} stagger>
-          <div className="about-pillars">
-            {ABOUT_PILLARS.map((pillar, index) => {
-              const Icon = PILLAR_ICONS[pillar.id] || Target;
-              return (
-                <article key={pillar.id} className="reveal-stagger-item">
-                  <GradientCard patternIndex={index} interactive className="h-full">
-                    <GradientCardIcon aria-hidden="true">
-                      <Icon size={22} strokeWidth={2.2} />
-                    </GradientCardIcon>
-                    <GradientCardTitle>{pillar.title}</GradientCardTitle>
-                    <GradientCardDescription>{pillar.body}</GradientCardDescription>
-                  </GradientCard>
-                </article>
-              );
-            })}
-          </div>
-        </ScrollReveal>
-
-        <section className="about-awards-section" aria-labelledby="about-awards-heading">
-          <ScrollReveal>
-            <p className="section-eyebrow">Recognition</p>
-            <h2 id="about-awards-heading" className="section-title">
-              Awards and recognition
+      {/* 4. Chronological Timeline */}
+      <section className="border-t border-line bg-surface px-6 py-24 md:px-12 md:py-32">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-16">
+            <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+              Historical Milestones · Chronologie
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+              Two Decades of Supply Chain Excellence
             </h2>
-          </ScrollReveal>
-          <ScrollReveal delay={80} stagger>
-            <div className="about-pillars about-awards">
-              {AWARDS.map((award, index) => (
-                <article key={award.title} className="reveal-stagger-item">
-                  <GradientCard patternIndex={(index + 1) % 4} className="h-full">
-                    <GradientCardTitle>{award.title}</GradientCardTitle>
-                    <GradientCardDescription>{award.body}</GradientCardDescription>
-                  </GradientCard>
-                </article>
-              ))}
-            </div>
-          </ScrollReveal>
-        </section>
+          </div>
 
-        <section className="about-timeline-section" aria-labelledby="about-timeline-heading">
-          <ScrollReveal className="about-timeline-header">
-            <p className="section-eyebrow">Since 2006</p>
-            <h2 id="about-timeline-heading">Our Historical Journey</h2>
-            <p className="section-desc mx-auto text-center">
-              Two decades of growth — from a Rawabi Group division to a nationwide FMCG
-              distribution leader serving Qatar&apos;s leading retailers.
-            </p>
-          </ScrollReveal>
+          <div className="border-t border-line">
+            {COMPANY_TIMELINE.map((item) => (
+              <div
+                key={item.year}
+                className="border-b border-line py-8 flex flex-col md:flex-row md:items-baseline justify-between gap-6"
+              >
+                <div className="font-mono text-2xl md:text-3xl text-foreground font-light md:w-48 shrink-0">
+                  {item.year}
+                </div>
 
-          <Timeline data={timelineData} />
-        </section>
+                <div className="flex-1 max-w-2xl">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#161833] font-semibold block mb-1">
+                    {item.era}
+                  </span>
+                  <h4 className="font-display text-xl font-normal text-foreground mb-2">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm text-muted font-light leading-relaxed">{item.desc}</p>
+                </div>
 
-        <ScrollReveal delay={160}>
-          <blockquote className="about-quote">
-            <p>&ldquo;{ABOUT_QUOTE.text}&rdquo;</p>
-            <cite>— {ABOUT_QUOTE.author}</cite>
-          </blockquote>
-        </ScrollReveal>
-      </div>
-
-      {modal}
+                <div className="hidden md:block font-mono text-xs text-muted">
+                  Qatar Operations
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

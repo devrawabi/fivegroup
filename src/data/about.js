@@ -4,13 +4,13 @@ export const ABOUT_OVERVIEW =
 export const ABOUT_PILLARS = [
   {
     id: 'vision',
-    title: 'Vision',
-    body: 'To become a globally renowned brand that extends premium quality distribution company that concentrates on FMCG products.',
+    title: 'Our Vision',
+    body: 'To be Qatar’s most trusted distribution partner, known for reliability, quality, and long-term relationships. We want every customer, from a retail store to a restaurant or a hotel, to know that when they work with Five Group, their supply is in safe hands.',
   },
   {
     id: 'mission',
-    title: 'Mission',
-    body: 'Our mission is to provide products of non-compromising quality in a wide market by knowing the customer needs with core values of trust and commitment.',
+    title: 'Our Mission',
+    body: 'To source quality FMCG and non-food items from around the world and deliver them to Qatar’s retail stores, restaurants, and hotels on time, every time.',
   },
   {
     id: 'values',

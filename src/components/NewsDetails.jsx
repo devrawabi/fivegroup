@@ -1,32 +1,9 @@
 import React, { useMemo } from 'react';
-import { ArrowLeft } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import ScrollReveal from '@/components/ui/scroll-reveal';
 import {
   getOtherNews,
-  getRandomProductsForNews,
   getRelatedProductsForNews,
   getRelatedProductsTitle,
 } from '../data/news';
-
-function RelatedProductCard({ product, onProductClick }) {
-  return (
-    <button
-      type="button"
-      className="news-related-product"
-      onClick={() => onProductClick?.(product)}
-      aria-label={`View ${product.name}`}
-    >
-      <span className="news-related-product-media">
-        <img src={product.image} alt="" loading="lazy" decoding="async" />
-      </span>
-      <span className="news-related-product-copy">
-        <span className="news-related-product-brand">{product.brand}</span>
-        <span className="news-related-product-name">{product.name}</span>
-      </span>
-    </button>
-  );
-}
 
 export default function NewsDetails({
   article,
@@ -43,138 +20,116 @@ export default function NewsDetails({
     () => (articleId ? getOtherNews(articleId) : []),
     [articleId],
   );
-  const bottomProducts = useMemo(
-    () =>
-      articleId
-        ? getRandomProductsForNews(
-            articleId,
-            4,
-            relatedProducts.map((product) => product.id),
-          )
-        : [],
-    [articleId, relatedProducts],
-  );
 
   if (!article) return null;
 
-  const paragraphs = article.body.split('\n\n').filter(Boolean);
+  const paragraphs = article.body ? article.body.split('\n\n').filter(Boolean) : [article.excerpt];
   const relatedTitle = getRelatedProductsTitle(article.id);
 
   return (
-    <div className="page-view news-details-page">
-      <ScrollReveal as="article" className="news-details" delay={60}>
-        <div className="container news-details-inner">
-          <div className="news-details-topbar">
-            <Button
-              type="button"
-              variant="outline"
-              className="btn-back rounded-full"
-              onClick={onBack}
-            >
-              <ArrowLeft data-icon="inline-start" />
-              Back to News
-            </Button>
-          </div>
-
-          <div className="news-details-split">
-            <div className="news-details-main">
-              <header className="news-details-header">
-                {article.date ? (
-                  <span className="news-card-date">{article.date}</span>
-                ) : null}
-                <h1>{article.title}</h1>
-              </header>
-
-              <div className="news-details-hero">
-                <img
-                  src={article.image}
-                  alt=""
-                  className="news-details-image"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
-
-              <div className="news-details-body">
-                {paragraphs.map((paragraph) => (
-                  <p key={paragraph.slice(0, 56)}>{paragraph}</p>
-                ))}
-              </div>
-            </div>
-
-            {relatedProducts.length > 0 ? (
-              <aside className="news-related-aside" aria-label={relatedTitle}>
-                <h2 className="news-related-title">{relatedTitle}</h2>
-                <div className="news-related-list">
-                  {relatedProducts.map((product) => (
-                    <RelatedProductCard
-                      key={product.id}
-                      product={product}
-                      onProductClick={onProductClick}
-                    />
-                  ))}
-                </div>
-              </aside>
-            ) : null}
-          </div>
+    <div className="bg-background text-foreground min-h-screen pt-28 pb-24 px-6 md:px-12">
+      <div className="max-w-[1000px] mx-auto">
+        {/* Top Back Navigation */}
+        <div className="mb-10 border-b border-line pb-4">
+          <button
+            type="button"
+            onClick={onBack}
+            className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.22em] text-muted hover:text-foreground transition-colors"
+          >
+            <span className="transition-transform group-hover:-translate-x-1">←</span>
+            <span>Return to Press Archive</span>
+          </button>
         </div>
-      </ScrollReveal>
 
-      <div className="container news-details-bottom">
-        {bottomProducts.length > 0 ? (
-          <ScrollReveal className="news-bottom-products" delay={80}>
-            <div className="news-bottom-header">
-              <p className="section-eyebrow">Catalog</p>
-              <h2 className="news-bottom-title">More products</h2>
-            </div>
-            <div className="news-bottom-products-grid">
-              {bottomProducts.map((product) => (
-                <RelatedProductCard
-                  key={product.id}
-                  product={product}
-                  onProductClick={onProductClick}
-                />
-              ))}
-            </div>
-          </ScrollReveal>
-        ) : null}
+        {/* Article Header */}
+        <header className="mb-10">
+          <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted mb-4">
+            <span>{article.date || '2026'}</span>
+            <span>·</span>
+            <span className="text-[#161833] font-semibold">{article.tag || 'Official Bulletin'}</span>
+          </div>
 
-        {otherNews.length > 0 ? (
-          <ScrollReveal className="news-other" delay={120}>
-            <div className="news-bottom-header">
-              <p className="section-eyebrow">Archive</p>
-              <h2 className="news-bottom-title">Other news</h2>
-            </div>
-            <div className="news-other-grid">
-              {otherNews.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  className="news-card news-card--media news-other-card"
-                  onClick={() => onNewsClick?.(item)}
-                  aria-label={`Read: ${item.title}`}
+          <h1 className="font-display text-3xl md:text-5xl font-normal text-foreground leading-[1.08] tracking-tight">
+            {article.title}
+          </h1>
+        </header>
+
+        {/* Article Featured Media */}
+        {article.image && (
+          <div className="mb-12 aspect-[16/9] w-full overflow-hidden bg-surface border border-line">
+            <img
+              src={article.image}
+              alt={article.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
+        {/* Article Body */}
+        <div className="prose prose-lg max-w-none space-y-6 text-foreground/85 font-light text-base md:text-lg leading-relaxed">
+          {paragraphs.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
+        </div>
+
+        {/* Related Products Grid */}
+        {relatedProducts.length > 0 && (
+          <div className="mt-20 pt-12 border-t border-line">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted block mb-2">
+              Associated Catalog Lines
+            </span>
+            <h3 className="font-display text-2xl font-normal text-foreground mb-8">
+              {relatedTitle}
+            </h3>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+              {relatedProducts.map((prod) => (
+                <div
+                  key={prod.id}
+                  onClick={() => onProductClick?.(prod)}
+                  className="bg-background p-6 hover:bg-surface transition-colors cursor-pointer flex flex-col justify-between"
+                  role="button"
+                  tabIndex={0}
                 >
-                  <img
-                    src={item.image}
-                    alt=""
-                    className="news-card-image"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div className="news-card-overlay" />
-                  <div className="news-card-content">
-                    {item.date ? (
-                      <span className="news-card-date">{item.date}</span>
-                    ) : null}
-                    <h3>{item.title}</h3>
-                    <p>{item.excerpt}</p>
-                    <span className="news-card-cta">Read more</span>
+                  <div className="aspect-square w-full flex items-center justify-center p-2 mb-4">
+                    <img src={prod.image} alt={prod.name} className="max-h-full max-w-full object-contain" />
                   </div>
-                </button>
+                  <div>
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-muted block mb-1">
+                      {prod.brand}
+                    </span>
+                    <h4 className="font-display text-sm font-medium text-foreground leading-snug">
+                      {prod.name}
+                    </h4>
+                  </div>
+                </div>
               ))}
             </div>
-          </ScrollReveal>
-        ) : null}
+          </div>
+        )}
+
+        {/* Other News Section */}
+        {otherNews.length > 0 && (
+          <div className="mt-16 pt-12 border-t border-line">
+            <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted block mb-4">
+              More Bulletins · Autres Publications
+            </span>
+            <div className="border-t border-line">
+              {otherNews.slice(0, 3).map((item) => (
+                <div
+                  key={item.id}
+                  onClick={() => onNewsClick?.(item)}
+                  className="border-b border-line py-5 flex items-baseline justify-between hover:text-[#161833] cursor-pointer group"
+                >
+                  <span className="font-display text-base md:text-lg font-normal group-hover:translate-x-1 transition-transform">
+                    {item.title}
+                  </span>
+                  <span className="font-mono text-xs text-muted">→</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

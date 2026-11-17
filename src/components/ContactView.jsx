@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
-import { ButtonWithIcon } from '@/components/ui/button-witn-icon';
-import ScrollReveal from '@/components/ui/scroll-reveal';
-import {
-  GradientCard,
-  GradientCardTitle,
-} from '@/components/ui/gradient-card';
 
 export default function ContactView() {
   const [formData, setFormData] = useState({
     companyName: '',
     fullName: '',
     email: '',
-    interest: 'Retailer',
+    phone: '',
+    interest: 'Retail Distribution',
     message: '',
   });
 
@@ -27,173 +22,216 @@ export default function ContactView() {
   };
 
   return (
-    <div className="page-view">
-      <div className="container">
-        <ScrollReveal as="header" className="page-header">
-          <p className="section-eyebrow">Partnerships &amp; Orders</p>
-          <h1 className="section-title">contact five group</h1>
-          <p className="section-desc">
-            Establish a distribution partnership or request bulk catalog shipments for your retail networks.
-          </p>
-        </ScrollReveal>
+    <div className="bg-background text-foreground">
+      {/* 1. Dark Midnight Navy Header matching BGS Law (/contact) */}
+      <section className="relative flex min-h-[45vh] flex-col justify-end bg-[#161833] text-white px-6 pt-32 pb-16 md:px-12 md:pb-20">
+        <div className="mx-auto max-w-[1400px] w-full">
+          <div className="mb-4 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-[#a3d2e2]">
+            Contact · Prendre Contact
+          </div>
+          <h1 className="font-display text-[clamp(2.2rem,5vw,4.8rem)] leading-[1.03] tracking-tight font-[450] text-white">
+            <span className="block overflow-hidden pb-[0.14em]">
+              <span className="block">Direct Dialogue,</span>
+            </span>
+            <span className="block overflow-hidden pb-[0.14em]">
+              <span className="block">Measured Operational Precision</span>
+            </span>
+          </h1>
+        </div>
+      </section>
 
-        <div className="page-split">
-          <ScrollReveal variant="left">
-            <GradientCard patternIndex={0} className="page-card-shell">
-              <GradientCardTitle className="mb-6 text-xl">Wholesale Inquiry Form</GradientCardTitle>
+      {/* 2. Split Content & Form Section */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 max-w-[1400px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-x-12 items-start">
+          {/* Left Column: Coordinates & Hours (5 Cols) */}
+          <div className="md:col-span-5 space-y-12">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#161833] font-semibold mb-3">
+                Headquarters · Siège Social
+              </p>
+              <address className="not-italic text-sm md:text-base leading-relaxed text-muted font-light">
+                Five Group Trading Company W.L.L.
+                <br />
+                Building No. 18, Street No. 60, Zone No. 92
+                <br />
+                Logistic Park-A, Birkat Al Awamer, Al Wukair
+                <br />
+                PO Box: 31075, Doha – Qatar
+              </address>
+              <a
+                href="https://maps.google.com/?q=Birkat+Al+Awamer+Doha+Qatar"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[#161833] hover:text-[#a3d2e2] transition"
+              >
+                <span>Google Maps Directions</span>
+                <span>↗</span>
+              </a>
+            </div>
 
-              {submitted ? (
-              <div className="success-state">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--brand-lime)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-                <h4>Inquiry Submitted!</h4>
-                <p>
-                  Thank you for contacting us. A B2B distribution executive will review your profile and email you within 24 hours.
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#161833] font-semibold mb-3">
+                Direct Communications
+              </p>
+              <ul className="space-y-3 font-mono text-xs text-muted">
+                <li>
+                  <span className="text-foreground">Telephone: </span>
+                  <a href="tel:+97444513537" className="hover:text-foreground transition">
+                    +974 4451 3537
+                  </a>
+                </li>
+                <li>
+                  <span className="text-foreground">Corporate Email: </span>
+                  <a
+                    href="mailto:info@fivegrouptrading.com"
+                    className="hover:text-foreground transition"
+                  >
+                    info@fivegrouptrading.com
+                  </a>
+                </li>
+                <li>
+                  <span className="text-foreground">Facsimile: </span>
+                  <span>+974 4451 3538</span>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#161833] font-semibold mb-3">
+                Operating Schedule
+              </p>
+              <p className="font-mono text-xs text-muted">
+                Sunday – Thursday · 08:00 – 17:30
+                <br />
+                Warehouse Intake &amp; Dispatch: 24/7 Scheduled
+              </p>
+            </div>
+          </div>
+
+          {/* Right Column: High-End Swiss Inquiry Form (7 Cols) */}
+          <div className="md:col-span-7 bg-surface p-8 md:p-12 border border-line">
+            <h2 className="font-display text-2xl font-normal text-foreground mb-2">
+              Transmission de Demande
+            </h2>
+            <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted mb-8">
+              Commercial &amp; Wholesale Inquiries
+            </p>
+
+            {submitted ? (
+              <div className="py-12 text-center space-y-4">
+                <span className="font-mono text-xs text-[#a3d2e2] bg-[#161833] px-3 py-1 uppercase tracking-widest inline-block">
+                  Transmis avec Succès
+                </span>
+                <h3 className="font-display text-2xl font-normal text-foreground">
+                  Your inquiry has been registered.
+                </h3>
+                <p className="text-sm text-muted font-light max-w-md mx-auto leading-relaxed">
+                  Our commercial distribution desk will review your specifications and contact you
+                  within one business day.
                 </p>
               </div>
             ) : (
-              <form className="form-stack" onSubmit={handleSubmit}>
-                <div className="form-field">
-                  <label htmlFor="companyName">Company Name *</label>
-                  <input
-                    id="companyName"
-                    type="text"
-                    placeholder="Rawabi Supermarket / Doha Catering"
-                    required
-                    value={formData.companyName}
-                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                  />
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                      Company Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. LuLu Hypermarket / Grand Hotel"
+                      value={formData.companyName}
+                      onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                      Contact Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Alexander Vance"
+                      value={formData.fullName}
+                      onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                    />
+                  </div>
                 </div>
 
-                <div className="form-field">
-                  <label htmlFor="fullName">Contact Person Name *</label>
-                  <input
-                    id="fullName"
-                    type="text"
-                    placeholder="John Doe"
-                    required
-                    value={formData.fullName}
-                    onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                      Corporate Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="name@company.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                      Telephone / WhatsApp
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="+974 ...."
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                    />
+                  </div>
                 </div>
 
-                <div className="form-field">
-                  <label htmlFor="email">Corporate Email Address *</label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="buyer@company.com"
-                    required
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  />
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="interest">Inquiry type</label>
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                    Commercial Interest
+                  </label>
                   <select
-                    id="interest"
                     value={formData.interest}
                     onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
+                    className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
                   >
-                    <option value="Retailer">I&apos;m a retailer / wholesale buyer</option>
-                    <option value="Brand">I&apos;m a brand / principal</option>
-                    <option value="Juices">Coco Queen Coconut Juices</option>
-                    <option value="Confectionery">5Star Cream Fudge</option>
-                    <option value="Warehousing">Cold Warehousing Storage</option>
-                    <option value="Logistics">Fleet Logistics / Transport</option>
+                    <option value="Retail Distribution">Retail &amp; Hypermarket Listing</option>
+                    <option value="HORECA Supply">HORECA &amp; Foodservice Provisioning</option>
+                    <option value="Warehousing Allocation">Cold Storage &amp; Warehousing Space</option>
+                    <option value="Brand Representation">International Brand Representation</option>
+                    <option value="Wholesale Bulk">Wholesale Container / Pallet Orders</option>
                   </select>
                 </div>
 
-                <div className="form-field">
-                  <label htmlFor="message">Message Details</label>
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                    Message / Specifications
+                  </label>
                   <textarea
-                    id="message"
-                    rows="4"
-                    placeholder="Enter order volumes or specific requirements..."
+                    rows={4}
+                    placeholder="Provide details regarding volumes, SKUs, or scheduled replenishment requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
                   />
                 </div>
 
-                <ButtonWithIcon type="submit">Send Wholesale Inquiry</ButtonWithIcon>
+                <button
+                  type="submit"
+                  className="w-full font-mono text-xs uppercase tracking-[0.24em] bg-[#161833] text-white py-4 hover:bg-[#a3d2e2] hover:text-[#161833] transition-all duration-300"
+                >
+                  Submit Inquiry →
+                </button>
               </form>
             )}
-            </GradientCard>
-          </ScrollReveal>
-
-          <div className="page-side-stack">
-            <ScrollReveal variant="right" delay={100}>
-              <GradientCard patternIndex={1} className="page-card-shell">
-                <GradientCardTitle className="mb-4 text-lg">Corporate Head Office</GradientCardTitle>
-              <p>
-                Building No# 18, Street No# 60, Zone No# 92,
-                <br />
-                PO Box: 31075, Doha – Qatar
-              </p>
-              <p>
-                <strong>Tel:</strong> +974 4455 1234
-              </p>
-              <p>
-                <strong>General:</strong>{' '}
-                <a href="mailto:info@fivegrouptrading.com">info@fivegrouptrading.com</a>
-              </p>
-              <ul className="contact-dept-list">
-                <li>
-                  <strong>Sales:</strong>{' '}
-                  <a href="mailto:sales@fivegrouptrading.com">sales@fivegrouptrading.com</a>
-                </li>
-                <li>
-                  <strong>Logistics:</strong>{' '}
-                  <a href="mailto:logistics@fivegrouptrading.com">logistics@fivegrouptrading.com</a>
-                </li>
-                <li>
-                  <strong>Careers:</strong>{' '}
-                  <a href="mailto:careers@fivegrouptrading.com">careers@fivegrouptrading.com</a>
-                </li>
-              </ul>
-              </GradientCard>
-            </ScrollReveal>
-
-            <ScrollReveal variant="right" delay={180}>
-              <GradientCard patternIndex={2} className="page-card-shell">
-                <GradientCardTitle className="mb-4 text-lg">Birkat Al Awamer Cold Storage</GradientCardTitle>
-              <p>
-                Logistic Park-A, Birkat Al Awamer, Al Wukair,
-                <br />
-                Doha - Qatar
-              </p>
-              <p>
-                <strong>Hours:</strong> Saturday – Thursday: 8:00 AM – 6:00 PM
-              </p>
-              </GradientCard>
-            </ScrollReveal>
-
-            <ScrollReveal className="map-embed" variant="fade" delay={260}>
-              <iframe
-                title="Five Group Birkat Al Awamer location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14457.777085790518!2d51.520448187158204!3d25.137579600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e4604e0e56722ab%3A0xe56722ab!2sBirkat%20Al%20Awamer!5e0!3m2!1sen!2sqa!4v1700000000000!5m2!1sen!2sqa"
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </ScrollReveal>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

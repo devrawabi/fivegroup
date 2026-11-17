@@ -4,7 +4,7 @@ export const NEWS_INTRO =
   "Get updated with rawabi's news and other details we share with you.";
 
 export const NEWS_ARCHIVE_INTRO =
-  'Company news, product launches, and market insights for Qatar FMCG partners.';
+  'Launches, logistics updates, and partner stories from Five Group across Qatar.';
 
 /** Dhathri SKUs are not in the live catalog yet — curated for news detail sidebar. */
 export const DHATHRI_PRODUCTS = [

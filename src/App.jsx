@@ -1,12 +1,15 @@
 import React, { Suspense, lazy, useCallback, useEffect, useMemo, useState } from 'react';
 import Navbar from './components/Navbar';
-import ScrollReveal from '@/components/ui/scroll-reveal';
 import SeoManager from '@/components/SeoManager';
 import HomeView from './components/HomeView';
 import Products from './components/Products';
-import { FOOTER_LINKS, resolvePageId } from '@/data/navigation';
+import { resolvePageId } from '@/data/navigation';
 import { PAGE_CONTENT } from '@/data/pages';
 import { buildPageUrl, getPageSeo, pagePathFromLocation } from '@/data/seo';
+import { PageTransitionProvider } from '@/components/ui/PageTransitionCurtain';
+import { usePageTransition } from '@/components/ui/TransitionContext';
+import { LanguageProvider, useLanguage } from '@/components/ui/LanguageContext';
+import SmoothScrollProvider from '@/components/ui/SmoothScrollProvider';
 
 const AboutView = lazy(() => import('./components/AboutView'));
 const LogisticsView = lazy(() => import('./components/LogisticsView'));
@@ -19,7 +22,45 @@ const CareersView = lazy(() => import('./components/CareersView'));
 const LoyaltyCustomersView = lazy(() => import('./components/LoyaltyCustomersView'));
 
 function PageFallback() {
-  return <div className="page-loading" role="status" aria-live="polite" aria-label="Loading page" />;
+  return (
+    <div className="min-h-[70vh] flex items-center justify-center bg-background text-muted">
+      <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.24em]">
+        <span className="size-2 rounded-full bg-[#a3d2e2] animate-ping" />
+        <span>Loading Perspective</span>
+      </div>
+    </div>
+  );
+}
+
+function getPageLabel(pageId, lang = 'en') {
+  if (lang === 'ar') {
+    const arLabels = {
+      home: 'الرئيسية · شركة مجموعة الخمسة',
+      'about-profile': 'المجموعة · الملف التعريفي',
+      'business-categories': 'محفظة التوزيع · المنتجات',
+      'brands-featured': 'العلامات التجارية المعتمدة',
+      'business-logistics': 'المركز اللوجستي · بركة العوامر',
+      'business-loyalty': 'الشركاء والعملاء · شبكة التوزيع',
+      'contact-news': 'المركز الإعلامي · الأخبار',
+      'contact-us': 'تواصل معنا · المكتب الرئيسي',
+      'contact-quote': 'طلب عرض أسعار معتمد',
+      'contact-careers': 'الوظائف والفرص المهنية',
+    };
+    return arLabels[pageId] || 'شركة مجموعة الخمسة للتجارة';
+  }
+  const enLabels = {
+    home: 'Five Group · Distribution & Cold Chain',
+    'about-profile': 'The Firm · Corporate Profile',
+    'business-categories': 'Wholesale Portfolio · Categories',
+    'brands-featured': 'Featured Brands · Portfolio',
+    'business-logistics': 'Logistics & Hub · Birkat Al Awamer',
+    'business-loyalty': 'Partners & Clients · Network',
+    'contact-news': 'Press Archive · Bulletin',
+    'contact-us': 'Contact Desk · Headquarters',
+    'contact-quote': 'Request Quotation · Inquiry',
+    'contact-careers': 'Careers & Talent · Opportunities',
+  };
+  return enLabels[pageId] || 'Five Group Trading';
 }
 
 function readInitialRoute() {
@@ -35,7 +76,7 @@ function readInitialRoute() {
   };
 }
 
-function App() {
+function AppInner() {
   const initial = readInitialRoute();
   const [activeTab, setActiveTab] = useState(initial.page);
   const [currentView, setCurrentView] = useState(initial.sku || initial.newsId ? 'details' : 'list');
@@ -43,6 +84,8 @@ function App() {
   const [selectedNews, setSelectedNews] = useState(null);
   const [productCategory, setProductCategory] = useState(initial.category);
 
+  const { navigateWithTransition } = usePageTransition();
+  const { language, t } = useLanguage();
   const currentPage = resolvePageId(activeTab);
 
   const syncUrl = useCallback((page, extras = {}) => {
@@ -56,15 +99,17 @@ function App() {
   useEffect(() => {
     const onPop = () => {
       const route = readInitialRoute();
-      setActiveTab(route.page);
-      setProductCategory(route.category);
-      setSelectedNews(null);
-      setSelectedProduct(null);
-      setCurrentView('list');
+      navigateWithTransition(() => {
+        setActiveTab(route.page);
+        setProductCategory(route.category);
+        setSelectedNews(null);
+        setSelectedProduct(null);
+        setCurrentView('list');
+      }, getPageLabel(route.page));
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
-  }, []);
+  }, [navigateWithTransition]);
 
   useEffect(() => {
     const extras = {
@@ -97,48 +142,55 @@ function App() {
   }, [currentView, selectedProduct, selectedNews]);
 
   const handleProductClick = (product) => {
-    setSelectedProduct(product);
-    setSelectedNews(null);
-    setCurrentView('details');
-    setActiveTab('business-categories');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateWithTransition(() => {
+      setSelectedProduct(product);
+      setSelectedNews(null);
+      setCurrentView('details');
+      setActiveTab('business-categories');
+    }, product.name || 'Product Details');
   };
 
   const handleNewsClick = (article) => {
-    setSelectedNews(article);
-    setSelectedProduct(null);
-    setActiveTab('contact-news');
-    setCurrentView('details');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateWithTransition(() => {
+      setSelectedNews(article);
+      setSelectedProduct(null);
+      setActiveTab('contact-news');
+      setCurrentView('details');
+    }, article.title || 'Official Bulletin');
   };
 
   const handleBackToProducts = () => {
-    setCurrentView('list');
-    setSelectedProduct(null);
-    setActiveTab('business-categories');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateWithTransition(() => {
+      setCurrentView('list');
+      setSelectedProduct(null);
+      setActiveTab('business-categories');
+    }, 'Wholesale Portfolio');
   };
 
   const handleBackToNews = () => {
-    setCurrentView('list');
-    setSelectedNews(null);
-    setActiveTab('contact-news');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigateWithTransition(() => {
+      setCurrentView('list');
+      setSelectedNews(null);
+      setActiveTab('contact-news');
+    }, 'Press Archive');
   };
 
-  const handleTabChange = (tab, category = null) => {
+  const handleTabChange = (tab, category = null, customLabel = null) => {
     const page = resolvePageId(tab);
-    setActiveTab(page);
-    setSelectedNews(null);
+    const label = customLabel || getPageLabel(page, language);
+    navigateWithTransition(() => {
+      setActiveTab(page);
+      setSelectedNews(null);
 
-    if (page === 'business-categories' || page === 'brands-featured') {
-      setProductCategory(category || 'all');
-      setCurrentView('list');
-      setSelectedProduct(null);
-    } else {
-      setCurrentView('list');
-      setSelectedProduct(null);
-    }
+      if (page === 'business-categories' || page === 'brands-featured') {
+        setProductCategory(category || 'all');
+        setCurrentView('list');
+        setSelectedProduct(null);
+      } else {
+        setCurrentView('list');
+        setSelectedProduct(null);
+      }
+    }, label);
   };
 
   const renderPage = () => {
@@ -220,66 +272,139 @@ function App() {
 
       <Navbar activeTab={currentPage} setActiveTab={handleTabChange} />
 
-      <main id="main-content">
+      <main id="main-content" className="relative min-h-[70vh] w-full">
         <Suspense fallback={<PageFallback />}>{renderPage()}</Suspense>
       </main>
 
-      <ScrollReveal as="footer" className="site-footer" variant="fade">
-        <div className="site-footer-inner">
-          <div className="site-footer-brand">
-            <img
-              src="/brand/five-group-footer-logo.png"
-              alt="Five Group Trading Company logo"
-              className="site-footer-logo"
-              width={160}
-              height={48}
-              loading="lazy"
-              decoding="async"
-            />
-            <p>
-              Building No# 18, Street No# 60, Zone No# 92, Logistic Park-a, Birkat Al Awamer, Al
-              Wukair, PO Box: 31075, Doha – Qatar
-            </p>
+      {/* Editorial Footer - exact BGS Law structure & bilingual adaptation */}
+      <footer className="border-t border-white/10 bg-[#161833] px-6 text-white md:px-12">
+        <div className="mx-auto max-w-[1400px] py-16 md:py-24">
+          <div className="grid items-start gap-12 md:grid-cols-12 md:gap-x-8">
+            <div className="md:col-span-5">
+              <a
+                className="block transition-opacity duration-300 hover:opacity-80"
+                aria-label="Five Group Trading"
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleTabChange('home', null, getPageLabel('home', language));
+                }}
+              >
+                <img
+                  src="/brand/five-group-footer-logo.png"
+                  alt="Five Group Trading Logo"
+                  className="block h-10 w-auto md:h-12 object-contain"
+                />
+              </a>
+              <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-1">
+                <span className="font-mono text-xs tracking-[0.18em] text-white/50">
+                  {t('hours')}
+                </span>
+              </div>
+              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[#a3d2e2]/70">
+                {t('hubAddress')}
+              </p>
+            </div>
+
+            <div className="space-y-10 md:col-span-3 md:col-start-7">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2]/80">
+                  {t('footerAddress')}
+                </p>
+                <address className="mt-3 text-sm not-italic leading-relaxed text-white/85 font-light">
+                  {t('addressLine1')}
+                  <br />
+                  {t('addressLine2')}
+                  <br />
+                  {t('addressLine3')}
+                  <br />
+                  {t('addressLine4')}
+                </address>
+              </div>
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2]/80">
+                  {t('footerHours')}
+                </p>
+                <p className="mt-3 text-sm text-white/85 font-light">
+                  {t('hours')}
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-10 md:col-span-3">
+              <div>
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2]/80">
+                  {t('footerContact')}
+                </p>
+                <ul className="mt-3 space-y-2 text-sm text-white/85 font-light">
+                  <li>
+                    <a
+                      href="tel:+97444513537"
+                      className="transition duration-200 hover:text-[#a3d2e2] font-mono text-xs"
+                      dir="ltr"
+                    >
+                      +974 4451 3537
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="mailto:info@fivegrouptrading.com"
+                      className="transition duration-200 hover:text-[#a3d2e2] font-mono text-xs"
+                      dir="ltr"
+                    >
+                      info@fivegrouptrading.com
+                    </a>
+                  </li>
+                  <li className="text-white/55 font-mono text-xs" dir="ltr">
+                    Fax · +974 4451 3538
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4>Navigation</h4>
-            <nav className="site-footer-nav" aria-label="Footer">
-              {FOOTER_LINKS.map((link) => {
-                const href = buildPageUrl(resolvePageId(link.page));
-                return (
-                  <a
-                    key={link.page}
-                    href={href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleTabChange(link.page);
-                      window.scrollTo({ top: 0, behavior: 'smooth' });
-                    }}
-                  >
-                    {link.label}
-                  </a>
-                );
-              })}
-            </nav>
-          </div>
-          <div>
-            <h4>Five Group</h4>
-            <p>
-              <a href="tel:+97444513537">+974 4451 3537</a>
-              <br />
-              <a href="mailto:info@fivegrouptrading.com">info@fivegrouptrading.com</a>
+
+          <div className="mt-16 flex flex-col gap-6 border-t border-white/15 pt-8 md:flex-row md:items-center md:justify-between">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-white/55">
+              © {new Date().getFullYear()} · {t('companyName')} · {t('allRightsReserved')}
             </p>
-            <p style={{ marginTop: '12px' }}>
-              A premium division of Rawabi Group · Serving Qatar since 2006
-            </p>
+            <div className="flex flex-wrap gap-x-8 gap-y-2 font-mono text-xs uppercase tracking-[0.22em] text-white/55">
+              <a
+                className="hover:text-white transition-colors duration-200"
+                href="#legal"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleTabChange('about-profile', null, language === 'ar' ? 'الشروط القانونية' : 'Legal Notice');
+                }}
+              >
+                {t('legalNotice')}
+              </a>
+              <a
+                className="hover:text-white transition-colors duration-200"
+                href="#privacy"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleTabChange('about-profile', null, language === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy');
+                }}
+              >
+                {t('privacyPolicy')}
+              </a>
+            </div>
           </div>
+
         </div>
-        <div className="site-footer-bottom">
-          © {new Date().getFullYear()} Five Group Trading. All rights reserved.
-        </div>
-      </ScrollReveal>
+      </footer>
     </>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <LanguageProvider>
+      <SmoothScrollProvider>
+        <PageTransitionProvider>
+          <AppInner />
+        </PageTransitionProvider>
+      </SmoothScrollProvider>
+    </LanguageProvider>
+  );
+}

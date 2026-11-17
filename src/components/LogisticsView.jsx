@@ -1,166 +1,178 @@
 import React from 'react';
-import { Package, Snowflake, ThermometerSnowflake, Warehouse, MapPin } from 'lucide-react';
-import ScrollReveal from '@/components/ui/scroll-reveal';
-import {
-  GradientCard,
-  GradientCardDescription,
-  GradientCardIcon,
-  GradientCardTitle,
-} from '@/components/ui/gradient-card';
 import {
   WAREHOUSE_INTRO,
   WAREHOUSE_DIVISIONS_INTRO,
   STORAGE_DIVISIONS,
   WAREHOUSE_FACILITIES,
-  WAREHOUSE_VISION,
-  WAREHOUSE_QUOTE,
 } from '../data/warehouse';
-import { COVERAGE_COPY, KEY_STATS } from '../data/companyFacts';
 import fleetImg from '../assets/locations/fleet.jpg';
 import warehouseImg from '../assets/locations/warehouse.jpg';
 
-const WAREHOUSE_IMAGE = '/media/story.webp';
-const COVERAGE_MAP_SRC =
-  'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14457.777085790518!2d51.520448187158204!3d25.137579600000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e4604e0e56722ab%3A0xe56722ab!2sBirkat%20Al%20Awamer!5e0!3m2!1sen!2sqa!4v1700000000000!5m2!1sen!2sqa';
-
-const DIVISION_ICONS = {
-  dry: Package,
-  chilled: ThermometerSnowflake,
-  frozen: Snowflake,
-};
-
 export default function LogisticsView() {
   return (
-    <div className="page-view warehouse-page">
-      <div className="container">
-        <ScrollReveal as="header" className="page-header">
-          <p className="section-eyebrow">Warehouse</p>
-          <h1 className="section-title">warehouse management</h1>
-          <p className="section-desc warehouse-lead text-justify">{WAREHOUSE_INTRO}</p>
-        </ScrollReveal>
+    <div className="bg-background text-foreground">
+      {/* 1. Page Header matching BGS Law */}
+      <section className="px-6 pt-32 pb-16 md:px-12 md:pt-44 md:pb-24 max-w-[1400px] mx-auto">
+        <div className="mb-4 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted">
+          Infrastructure · Plateforme Logistique
+        </div>
+        <h1 className="font-display text-[clamp(2.2rem,5vw,4.8rem)] leading-[1.03] tracking-tight font-[450] text-foreground max-w-5xl">
+          <span className="block overflow-hidden pb-[0.14em]">
+            <span className="block">Multi-Temperature Warehousing &amp; Fleet,</span>
+          </span>
+          <span className="block overflow-hidden pb-[0.14em]">
+            <span className="block">Securing Integrity from Intake to Retail Shelf</span>
+          </span>
+        </h1>
 
-        <ScrollReveal delay={80}>
-          <p className="warehouse-divisions-lead">{WAREHOUSE_DIVISIONS_INTRO}</p>
-        </ScrollReveal>
+        <p className="mt-8 text-base md:text-xl text-muted font-light leading-relaxed max-w-3xl">
+          {WAREHOUSE_INTRO}
+        </p>
 
-        <ScrollReveal delay={100} stagger>
-          <div className="warehouse-divisions">
-            {STORAGE_DIVISIONS.map((division, index) => {
-              const Icon = DIVISION_ICONS[division.id] || Package;
-              return (
-                <article key={division.id} className="reveal-stagger-item">
-                  <GradientCard patternIndex={index} interactive className="h-full">
-                    <GradientCardIcon aria-hidden="true">
-                      <Icon size={22} strokeWidth={2.2} />
-                    </GradientCardIcon>
-                    <GradientCardTitle>{division.title}</GradientCardTitle>
-                    <GradientCardDescription>{division.body}</GradientCardDescription>
-                  </GradientCard>
-                </article>
-              );
-            })}
+        {/* Technical Highlights in Monospace Hairline Box */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+          <div className="bg-background p-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-1">
+              Hub Floor Area
+            </span>
+            <span className="font-display text-2xl font-medium text-foreground">16,000+ sqm</span>
           </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={120} stagger>
-          <div className="warehouse-facilities">
-            {WAREHOUSE_FACILITIES.map((facility, index) => (
-              <article key={facility.id} className="reveal-stagger-item">
-                <GradientCard patternIndex={index + 1} className="h-full">
-                  <div className="mb-5 flex items-center gap-3.5">
-                    <GradientCardIcon className="mb-0" aria-hidden="true">
-                      <Warehouse size={20} strokeWidth={2.2} />
-                    </GradientCardIcon>
-                    <GradientCardTitle className="mt-0">{facility.name}</GradientCardTitle>
-                  </div>
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-start gap-2.5 text-sm text-muted-foreground">
-                      <MapPin size={16} strokeWidth={2.2} aria-hidden="true" className="mt-0.5 shrink-0 text-[var(--brand-lime)]" />
-                      <span>{facility.location}</span>
-                    </div>
-                    <div className="flex flex-col gap-1 border-t border-border/70 pt-4">
-                      <span className="font-display text-3xl font-extrabold tracking-tight text-[var(--brand-ink)] md:text-4xl">
-                        {facility.area}
-                      </span>
-                      <span className="text-xs uppercase tracking-[0.12em] text-muted-foreground">
-                        {facility.detail}
-                      </span>
-                    </div>
-                  </div>
-                </GradientCard>
-              </article>
-            ))}
+          <div className="bg-background p-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-1">
+              Active Fleet
+            </span>
+            <span className="font-display text-2xl font-medium text-foreground">Multi-Temp</span>
           </div>
-        </ScrollReveal>
-
-        <ScrollReveal delay={140}>
-          <div className="warehouse-vision-grid">
-            <div
-              className="warehouse-vision-image"
-              style={{ backgroundImage: `url(${WAREHOUSE_IMAGE})` }}
-              role="img"
-              aria-label="Five Group warehouse facility"
-            />
-            <div className="warehouse-vision-copy">
-              <p className="section-eyebrow">Our Vision</p>
-              <h2>{WAREHOUSE_VISION.title}</h2>
-              <p className="text-justify">{WAREHOUSE_VISION.body}</p>
-              <div className="warehouse-vision-highlight">
-                <span className="warehouse-vision-highlight-value">{WAREHOUSE_VISION.highlight}</span>
-                <span className="warehouse-vision-highlight-label">total storage capacity</span>
-              </div>
-            </div>
+          <div className="bg-background p-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-1">
+              Cold Rooms
+            </span>
+            <span className="font-display text-2xl font-medium text-foreground">
+              -20°C to +4°C
+            </span>
           </div>
-        </ScrollReveal>
+          <div className="bg-background p-6">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-1">
+              SLA Standard
+            </span>
+            <span className="font-display text-2xl font-medium text-foreground">99.4% On-Time</span>
+          </div>
+        </div>
+      </section>
 
-        <section className="warehouse-coverage" aria-labelledby="warehouse-coverage-heading">
-          <ScrollReveal>
-            <p className="section-eyebrow">Coverage</p>
-            <h2 id="warehouse-coverage-heading" className="section-title">
-              {COVERAGE_COPY.title}
+      {/* 2. Storage Divisions in Swiss Hairline Bento Grid */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 bg-surface">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-14">
+            <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+              Thermal Segmentation · Divisions
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+              {WAREHOUSE_DIVISIONS_INTRO}
             </h2>
-            <p className="section-desc">{COVERAGE_COPY.lead}</p>
-          </ScrollReveal>
+          </div>
 
-          <ScrollReveal className="content-page-highlights warehouse-coverage-stats" delay={60}>
-            {KEY_STATS.map((item) => (
-              <div key={`${item.label}-${item.value}`} className="content-page-highlight">
-                <span className="content-page-highlight-value">{item.value}</span>
-                <span className="content-page-highlight-label">{item.label}</span>
+          <div className="grid gap-px bg-line border border-line md:grid-cols-3">
+            {STORAGE_DIVISIONS.map((div, idx) => (
+              <div
+                key={div.id}
+                className="bg-background p-8 md:p-10 flex flex-col justify-between hover:bg-surface transition-colors"
+              >
+                <div>
+                  <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                    Zone 0{idx + 1}
+                  </span>
+                  <h3 className="font-display text-xl font-normal text-foreground mb-3">
+                    {div.title}
+                  </h3>
+                  <p className="text-sm text-muted font-light leading-relaxed">{div.body}</p>
+                </div>
+                <div className="mt-8 pt-4 border-t border-line font-mono text-[10px] uppercase tracking-[0.2em] text-muted">
+                  Strictly Temperature Controlled
+                </div>
               </div>
             ))}
-          </ScrollReveal>
+          </div>
+        </div>
+      </section>
 
-          <ScrollReveal className="warehouse-coverage-media" delay={100}>
-            <div className="warehouse-coverage-photos">
-              <figure>
-                <img src={warehouseImg} alt="Five Group warehouse facility" loading="lazy" decoding="async" />
-                <figcaption>Warehouse operations</figcaption>
-              </figure>
-              <figure>
-                <img src={fleetImg} alt="Five Group distribution fleet" loading="lazy" decoding="async" />
-                <figcaption>Multi-temperature fleet</figcaption>
-              </figure>
-            </div>
-            <div className="map-embed warehouse-coverage-map">
-              <iframe
-                title={COVERAGE_COPY.mapLabel}
-                src={COVERAGE_MAP_SRC}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </ScrollReveal>
-        </section>
+      {/* 3. Facilities Breakdown */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 bg-background">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-14">
+            <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+              Hub Network · Emplacements
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+              Strategic Distribution Footprint Across Qatar
+            </h2>
+          </div>
 
-        <ScrollReveal delay={160}>
-          <blockquote className="about-quote warehouse-quote">
-            <p>&ldquo;{WAREHOUSE_QUOTE.text}&rdquo;</p>
-            <cite>— {WAREHOUSE_QUOTE.author}</cite>
-          </blockquote>
-        </ScrollReveal>
-      </div>
+          <div className="grid gap-px bg-line border border-line md:grid-cols-2">
+            {WAREHOUSE_FACILITIES.map((fac) => (
+              <div key={fac.id} className="bg-background p-8 md:p-10 flex flex-col justify-between">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#a3d2e2] bg-[#161833] px-2.5 py-1 inline-block mb-4">
+                    {fac.detail}
+                  </span>
+                  <h3 className="font-display text-2xl font-normal text-foreground mb-2">
+                    {fac.name}
+                  </h3>
+                  <p className="text-sm text-muted font-light mb-6">{fac.location}</p>
+                </div>
+
+                <div className="border-t border-line pt-4 flex items-baseline justify-between">
+                  <span className="font-mono text-xs text-muted">Operational Footprint:</span>
+                  <span className="font-display text-xl font-medium text-foreground">
+                    {fac.area}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Visual Photo Grid */}
+      <section className="border-t border-line bg-surface px-6 py-20 md:px-12 md:py-28">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line border border-line">
+            <div className="bg-background p-6 md:p-8 flex flex-col">
+              <div className="relative aspect-video w-full overflow-hidden bg-black/10 mb-6">
+                <img
+                  src={warehouseImg}
+                  alt="Birkat Al Awamer Hub"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="font-display text-xl text-foreground font-normal mb-2">
+                Birkat Al Awamer Logistics Park-A
+              </h3>
+              <p className="text-sm text-muted font-light leading-relaxed">
+                Central storage, container unstuffing, multi-rack storage, and continuous quality
+                inspection before store dispatch.
+              </p>
+            </div>
+
+            <div className="bg-background p-6 md:p-8 flex flex-col">
+              <div className="relative aspect-video w-full overflow-hidden bg-black/10 mb-6">
+                <img
+                  src={fleetImg}
+                  alt="Reefer Fleet Network"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <h3 className="font-display text-xl text-foreground font-normal mb-2">
+                Nationwide Reefer Delivery Network
+              </h3>
+              <p className="text-sm text-muted font-light leading-relaxed">
+                Temperature-regulated refrigerated fleet operating around the clock with GPS trace,
+                ensuring uninterrupted cold chain for all perishable consignments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

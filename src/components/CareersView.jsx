@@ -1,18 +1,15 @@
-import React, { useState } from 'react'
-import { ArrowDown, Briefcase, MapPin, Clock3 } from 'lucide-react'
-import { ButtonWithIcon } from '@/components/ui/button-witn-icon'
-import ScrollReveal from '@/components/ui/scroll-reveal'
+import React, { useState } from 'react';
 import {
   CAREERS_DEPARTMENTS,
   CAREERS_HERO,
   CAREERS_JOBS,
   CAREERS_STATS,
   CAREERS_VALUES,
-} from '@/data/careers'
+} from '@/data/careers';
 
-export default function CareersView({ onNavigate }) {
-  const [selectedJobId, setSelectedJobId] = useState(CAREERS_JOBS[0]?.id || '')
-  const [submitted, setSubmitted] = useState(false)
+export default function CareersView() {
+  const [selectedJobId, setSelectedJobId] = useState(CAREERS_JOBS[0]?.id || '');
+  const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -21,295 +18,245 @@ export default function CareersView({ onNavigate }) {
     role: CAREERS_JOBS[0]?.title || '',
     experience: '',
     message: '',
-  })
-
-  const selectedJob = CAREERS_JOBS.find((job) => job.id === selectedJobId)
-
-  const scrollToApply = () => {
-    document.getElementById('careers-apply')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  const scrollToRoles = () => {
-    document.getElementById('careers-roles')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
+  });
 
   const selectJob = (job) => {
-    setSelectedJobId(job.id)
+    setSelectedJobId(job.id);
     setFormData((current) => ({
       ...current,
       department: job.department,
       role: job.title,
-    }))
-  }
+    }));
+    document.getElementById('application-desk')?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    if (!formData.fullName || !formData.email || !formData.phone) return
-    setSubmitted(true)
-  }
+    event.preventDefault();
+    if (!formData.fullName || !formData.email || !formData.phone) return;
+    setSubmitted(true);
+  };
 
   return (
-    <div className="page-view careers-view">
-      <section className="careers-hero" aria-label="Careers hero">
-        <div
-          className="careers-hero-media"
-          style={{ backgroundImage: `url(${CAREERS_HERO.image})` }}
-          aria-hidden="true"
-        />
-        <div className="careers-hero-overlay" aria-hidden="true" />
-        <div className="container careers-hero-inner">
-          <ScrollReveal className="careers-hero-copy">
-            <p className="section-eyebrow careers-hero-eyebrow">{CAREERS_HERO.eyebrow}</p>
-            <h1 className="careers-hero-title">{CAREERS_HERO.title}</h1>
-            <p className="careers-hero-lead">{CAREERS_HERO.lead}</p>
-            <div className="careers-hero-actions">
-              <ButtonWithIcon onDark onClick={scrollToRoles}>
-                View openings
-              </ButtonWithIcon>
-              <button type="button" className="careers-hero-secondary" onClick={scrollToApply}>
-                Apply now
-                <ArrowDown aria-hidden="true" />
-              </button>
+    <div className="bg-background text-foreground min-h-screen">
+      {/* 1. Header matching BGS Law (/equipe) */}
+      <section className="px-6 pt-32 pb-16 md:px-12 md:pt-44 md:pb-24 max-w-[1400px] mx-auto">
+        <div className="mb-4 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted">
+          Our Team &amp; Careers · Talents &amp; Métiers
+        </div>
+        <h1 className="font-display text-[clamp(2.2rem,5vw,4.8rem)] leading-[1.03] tracking-tight font-[450] text-foreground max-w-5xl">
+          <span className="block overflow-hidden pb-[0.14em]">
+            <span className="block">Dedicated to Operational Precision,</span>
+          </span>
+          <span className="block overflow-hidden pb-[0.14em]">
+            <span className="block">United in Shared Professional Excellence</span>
+          </span>
+        </h1>
+
+        <p className="mt-8 text-base md:text-xl text-muted font-light leading-relaxed max-w-3xl">
+          {CAREERS_HERO.lead}
+        </p>
+
+        {/* Quick Stats in Monospace Hairline Box */}
+        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-px bg-line border border-line">
+          {CAREERS_STATS.map((stat) => (
+            <div key={stat.label} className="bg-background p-6">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-1">
+                {stat.label}
+              </span>
+              <span className="font-display text-2xl font-medium text-foreground">
+                {stat.value}
+              </span>
             </div>
-          </ScrollReveal>
+          ))}
         </div>
       </section>
 
-      <div className="container">
-        <ScrollReveal className="careers-stats-strip" delay={80}>
-          {CAREERS_STATS.map((stat) => (
-            <div key={stat.label} className="careers-stat">
-              <span className="careers-stat-value">{stat.value}</span>
-              <span className="careers-stat-label">{stat.label}</span>
-            </div>
-          ))}
-        </ScrollReveal>
-      </div>
-
-      <div className="container careers-body">
-        <ScrollReveal as="section" id="careers-roles" className="careers-section" aria-labelledby="careers-roles-heading">
-          <div className="careers-section-head">
-            <p className="section-eyebrow">Openings</p>
-            <h2 id="careers-roles-heading" className="section-title">
-              roles we are building
-            </h2>
-            <p className="section-desc">
-              Select a role to prefill your application. We also welcome strong open applications.
-            </p>
-          </div>
-
-          <ul className="careers-jobs">
-            {CAREERS_JOBS.map((job, index) => {
-              const isActive = job.id === selectedJobId
-              return (
-                <ScrollReveal as="li" key={job.id} delay={index * 60}>
-                  <button
-                    type="button"
-                    className={`careers-job ${isActive ? 'active' : ''}`}
-                    onClick={() => {
-                      selectJob(job)
-                      scrollToApply()
-                    }}
-                    aria-pressed={isActive}
-                  >
-                    <div className="careers-job-top">
-                      <h3>{job.title}</h3>
-                      <span className="careers-job-dept">{job.department}</span>
-                    </div>
-                    <p>{job.summary}</p>
-                    <div className="careers-job-meta">
-                      <span>
-                        <Briefcase aria-hidden="true" />
-                        {job.type}
-                      </span>
-                      <span>
-                        <MapPin aria-hidden="true" />
-                        {job.location}
-                      </span>
-                      <span>
-                        <Clock3 aria-hidden="true" />
-                        Immediate
-                      </span>
-                    </div>
-                  </button>
-                </ScrollReveal>
-              )
-            })}
-          </ul>
-        </ScrollReveal>
-
-        <ScrollReveal as="section" className="careers-section" aria-labelledby="careers-values-heading">
-          <div className="careers-section-head">
-            <p className="section-eyebrow">Culture</p>
-            <h2 id="careers-values-heading" className="section-title">
-              how we work
+      {/* 2. Team Values in Swiss Bento Grid */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 bg-surface">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-14">
+            <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+              Corporate Culture · Démarche
+            </span>
+            <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+              Institutional Values Guiding our Workforce
             </h2>
           </div>
-          <div className="careers-values">
-            {CAREERS_VALUES.map((value) => (
-              <article key={value.id} className="careers-value">
-                <h3>{value.title}</h3>
-                <p>{value.body}</p>
-              </article>
+
+          <div className="grid gap-px bg-line border border-line sm:grid-cols-2 lg:grid-cols-4">
+            {CAREERS_VALUES.map((val, idx) => (
+              <div
+                key={val.title}
+                className="bg-background p-8 flex flex-col justify-between hover:bg-surface transition-colors"
+              >
+                <div>
+                  <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                    0{idx + 1}
+                  </span>
+                  <h3 className="font-display text-xl font-normal text-foreground mb-3">
+                    {val.title}
+                  </h3>
+                  <p className="text-sm text-muted font-light leading-relaxed">{val.body}</p>
+                </div>
+              </div>
             ))}
           </div>
-        </ScrollReveal>
+        </div>
+      </section>
 
-        <section id="careers-apply" className="careers-apply" aria-labelledby="careers-apply-heading">
-          <ScrollReveal className="careers-apply-intro">
-            <p className="section-eyebrow">Apply</p>
-            <h2 id="careers-apply-heading" className="section-title">
-              send your profile
-            </h2>
-            <p className="section-desc">
-              {selectedJob
-                ? `Applying for ${selectedJob.title}. Our team reviews every application and responds when there is a fit.`
-                : 'Tell us where you can contribute. Our team reviews every application carefully.'}
-            </p>
-            <p className="careers-apply-note">
-              Prefer email? Write to{' '}
-              <a href="mailto:info@fivegrouptrading.com">info@fivegrouptrading.com</a>
-              {' '}or{' '}
-              <button type="button" className="careers-inline-link" onClick={() => onNavigate?.('contact-us')}>
-                contact the team
-              </button>
-              .
-            </p>
-          </ScrollReveal>
+      {/* 3. Open Roles with Hairline List */}
+      <section className="border-t border-line px-6 py-20 md:px-12 md:py-28 bg-background">
+        <div className="mx-auto max-w-[1400px]">
+          <div className="mb-14 flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div>
+              <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+                Open Opportunities · Postes Ouverts
+              </span>
+              <h2 className="font-display text-2xl md:text-4xl font-normal text-foreground">
+                Current Professional Openings
+              </h2>
+            </div>
+            <span className="font-mono text-xs text-muted">Doha &amp; Birkat Al Awamer Hub</span>
+          </div>
 
-          <ScrollReveal className="careers-apply-panel" delay={100}>
-            {submitted ? (
-              <div className="success-state careers-success">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="48"
-                  height="48"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="var(--brand-lime)"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden
-                >
-                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-                  <polyline points="22 4 12 14.01 9 11.01" />
-                </svg>
-                <h3>Application received</h3>
-                <p>
-                  Thank you, {formData.fullName.split(' ')[0] || 'applicant'}. Our HR team will review your
-                  profile for {formData.role || 'open roles'} and follow up if there is a match.
-                </p>
-                <ButtonWithIcon
-                  onClick={() => {
-                    setSubmitted(false)
-                    setFormData((current) => ({ ...current, message: '', experience: '' }))
-                  }}
-                >
-                  Submit another
-                </ButtonWithIcon>
+          <div className="border-t border-line">
+            {CAREERS_JOBS.map((job) => (
+              <div
+                key={job.id}
+                onClick={() => selectJob(job)}
+                className={`border-b border-line py-8 px-2 flex flex-col md:flex-row md:items-baseline justify-between gap-6 hover:bg-surface transition-colors cursor-pointer group ${
+                  selectedJobId === job.id ? 'bg-surface' : ''
+                }`}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="md:w-64 font-mono text-xs uppercase tracking-[0.2em] text-muted">
+                  <span className="text-[#161833] font-semibold">{job.department}</span>
+                  <br />
+                  <span className="text-[11px]">{job.location} · {job.type}</span>
+                </div>
+
+                <div className="flex-1 max-w-2xl">
+                  <h3 className="font-display text-xl md:text-2xl font-normal text-foreground group-hover:text-navy transition-colors">
+                    {job.title}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted font-light leading-relaxed">
+                    {job.summary}
+                  </p>
+                </div>
+
+                <div className="shrink-0 font-mono text-xs text-muted group-hover:text-foreground group-hover:translate-x-1.5 transition-all">
+                  Apply for Role →
+                </div>
               </div>
-            ) : (
-              <form className="form-stack careers-form" onSubmit={handleSubmit} noValidate>
-                <div className="form-field">
-                  <label htmlFor="careers-fullName">Full name *</label>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Application Desk */}
+      <section className="border-t border-line bg-surface px-6 py-20 md:px-12 md:py-28" id="application-desk">
+        <div className="mx-auto max-w-[800px]">
+          <span className="font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted block mb-2">
+            Direct Transmission
+          </span>
+          <h2 className="font-display text-2xl md:text-3xl font-normal text-foreground mb-8">
+            Candidate Application Desk
+          </h2>
+
+          {submitted ? (
+            <div className="p-12 text-center bg-background border border-line space-y-3">
+              <span className="font-mono text-xs text-[#a3d2e2] bg-[#161833] px-3 py-1 uppercase tracking-widest inline-block">
+                Candidature Transmise
+              </span>
+              <h3 className="font-display text-2xl text-foreground font-normal">
+                Your application has been logged.
+              </h3>
+              <p className="text-sm text-muted font-light">
+                Our HR and recruitment division will examine your profile and qualifications.
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="bg-background border border-line p-8 md:p-12 space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                    Full Name *
+                  </label>
                   <input
-                    id="careers-fullName"
-                    name="name"
                     type="text"
-                    autoComplete="name"
                     required
-                    placeholder="Your full name"
+                    placeholder="Candidate Name"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
                   />
                 </div>
-
-                <div className="careers-form-row">
-                  <div className="form-field">
-                    <label htmlFor="careers-email">Email *</label>
-                    <input
-                      id="careers-email"
-                      name="email"
-                      type="email"
-                      autoComplete="email"
-                      required
-                      placeholder="you@email.com"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    />
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="careers-phone">Phone *</label>
-                    <input
-                      id="careers-phone"
-                      name="tel"
-                      type="tel"
-                      autoComplete="tel"
-                      required
-                      placeholder="+974 …"
-                      value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    />
-                  </div>
-                </div>
-
-                <div className="careers-form-row">
-                  <div className="form-field">
-                    <label htmlFor="careers-department">Department</label>
-                    <select
-                      id="careers-department"
-                      value={formData.department}
-                      onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                    >
-                      {CAREERS_DEPARTMENTS.map((dept) => (
-                        <option key={dept} value={dept}>
-                          {dept}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="form-field">
-                    <label htmlFor="careers-role">Role interest</label>
-                    <input
-                      id="careers-role"
-                      type="text"
-                      value={formData.role}
-                      onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                      placeholder="Role title"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-field">
-                  <label htmlFor="careers-experience">Years of experience</label>
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                    Email Address *
+                  </label>
                   <input
-                    id="careers-experience"
+                    type="email"
+                    required
+                    placeholder="candidate@email.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                    Telephone *
+                  </label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+974 ...."
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                  />
+                </div>
+                <div>
+                  <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                    Role Applied For
+                  </label>
+                  <input
                     type="text"
-                    inputMode="numeric"
-                    placeholder="e.g. 3 years in FMCG sales"
-                    value={formData.experience}
-                    onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
+                    value={formData.role}
+                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
                   />
                 </div>
+              </div>
 
-                <div className="form-field">
-                  <label htmlFor="careers-message">Cover note</label>
-                  <textarea
-                    id="careers-message"
-                    rows={4}
-                    placeholder="Share relevant experience, availability, and why Five Group."
-                    value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  />
-                </div>
+              <div>
+                <label className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted block mb-2">
+                  Professional Experience &amp; Cover Notes
+                </label>
+                <textarea
+                  rows={4}
+                  placeholder="Outline your background, certifications, and years in FMCG or logistics..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                />
+              </div>
 
-                <ButtonWithIcon type="submit">Submit application</ButtonWithIcon>
-              </form>
-            )}
-          </ScrollReveal>
-        </section>
-      </div>
+              <button
+                type="submit"
+                className="w-full font-mono text-xs uppercase tracking-[0.24em] bg-[#161833] text-white py-4 hover:bg-[#a3d2e2] hover:text-[#161833] transition-all duration-300"
+              >
+                Submit Dossier →
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
     </div>
-  )
+  );
 }

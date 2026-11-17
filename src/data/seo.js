@@ -256,7 +256,6 @@ export function resolveSeoPageId(raw) {
 }
 
 export function buildPageUrl(pageId, extras = {}) {
-  const seo = getPageSeo(pageId);
   if (pageId === 'home' && !extras.category && !extras.product && !extras.news) {
     return '/';
   }
