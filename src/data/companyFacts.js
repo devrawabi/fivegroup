@@ -228,19 +228,40 @@ export const BRAND_ALLIANCES = [
 
 export const AWARDS = [
   {
-    title: 'Partner recognition events',
+    title: 'Partner Excellence',
+    subtitle: 'FY 2024–25',
     body: 'Ongoing felicitation of leading retail and trade partners for shared growth across Qatar’s FMCG market.',
-    image: '/media/home-award-partner.jpg',
+    image: '/media/award-logo-partner.jpg',
   },
   {
-    title: 'Operational excellence',
+    title: 'Operational Excellence',
+    subtitle: 'Rawabi Group',
     body: 'Recognized within Rawabi Group for specialist FMCG distribution, brand stewardship, and service standards.',
-    image: '/media/home-award-ops.jpg',
+    image: '/media/award-logo-ops.jpg',
   },
   {
-    title: 'Category launch excellence',
+    title: 'Category Launch Excellence',
+    subtitle: '2025',
     body: 'Industry gatherings and exclusive introductions — from wellness lines to better-for-you foods — with top retail partners.',
-    image: '/media/home-award-launch.jpg',
+    image: '/media/award-logo-launch.jpg',
+  },
+  {
+    title: 'Retail Partnership Award',
+    subtitle: 'Qatar FMCG',
+    body: 'Recognition for sustained retail collaboration, listing support, and dependable replenishment across Qatar’s key trade channels.',
+    image: '/media/award-logo-retail.jpg',
+  },
+  {
+    title: 'Distribution Excellence',
+    subtitle: '20 Years',
+    body: 'Two decades of disciplined import and distribution execution serving hypermarkets, HORECA, and specialty partners nationwide.',
+    image: '/media/award-logo-distribution.jpg',
+  },
+  {
+    title: 'Supply Chain Merit',
+    subtitle: 'Cold Chain',
+    body: 'Merit for multi-temperature warehousing and fleet discipline that protects product integrity from hub to store door.',
+    image: '/media/award-logo-supply.jpg',
   },
 ];
 
