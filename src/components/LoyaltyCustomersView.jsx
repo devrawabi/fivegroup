@@ -28,7 +28,7 @@ export default function LoyaltyCustomersView({ onNavigate }) {
           <button
             type="button"
             onClick={() => onNavigate?.('contact-us')}
-            className="font-mono text-xs uppercase tracking-[0.22em] bg-[#161833] text-white px-6 py-3.5 hover:bg-[#a3d2e2] hover:text-[#161833] transition"
+            className="font-mono text-xs uppercase tracking-[0.22em] bg-[#1b1b1b] text-white px-6 py-3.5 hover:bg-[#8abd3f] hover:text-[#1b1b1b] transition"
           >
             Become a Retail Partner →
           </button>
@@ -87,7 +87,7 @@ export default function LoyaltyCustomersView({ onNavigate }) {
             {TESTIMONIALS.map((t, idx) => (
               <div key={t.name} className="bg-background p-8 md:p-10 flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                  <span className="font-mono text-xs text-[#1b1b1b] font-semibold block mb-4">
                     Statement 0{idx + 1}
                   </span>
                   <p className="font-display text-base md:text-lg text-foreground font-normal leading-relaxed mb-6">

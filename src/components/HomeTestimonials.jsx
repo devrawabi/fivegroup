@@ -21,7 +21,7 @@ export default function HomeTestimonials() {
           <div className="max-w-3xl">
             <BgsScrollReveal>
               <div className="mb-3 inline-flex items-center gap-2 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-muted">
-                <span className="size-2 rounded-full bg-[#8abd3f] animate-pulse" />
+                <span className="size-2 rounded-full bg-lime animate-pulse" />
                 <span>
                   {language === 'ar' ? 'شهادات الشركاء' : 'Partner Endorsements'}
                 </span>
@@ -61,12 +61,12 @@ export default function HomeTestimonials() {
               <article
                 key={`${item.id}-${index}`}
                 dir={isRtl ? 'rtl' : 'ltr'}
-                className="w-[360px] sm:w-[460px] md:w-[500px] lg:w-[540px] shrink-0 border border-line bg-background p-6 sm:p-8 md:p-9 flex flex-col justify-between hover:border-[#161833] hover:shadow-lg transition-all duration-300 group"
+                className="w-[360px] sm:w-[460px] md:w-[500px] lg:w-[540px] shrink-0 border border-line bg-background p-6 sm:p-8 md:p-9 flex flex-col justify-between hover:border-[#1b1b1b] hover:shadow-lg transition-all duration-300 group"
               >
                 <div>
                   {/* Brand & Category Note */}
                   <div className="mb-5">
-                    <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground tracking-tight leading-snug group-hover:text-[#161833] transition-colors">
+                    <h3 className="font-display text-lg sm:text-xl font-semibold text-foreground tracking-tight leading-snug group-hover:text-[#1b1b1b] transition-colors">
                       {item.brand}
                     </h3>
                     <div className="mt-1 font-mono text-[11px] uppercase tracking-wider text-muted">
@@ -75,7 +75,7 @@ export default function HomeTestimonials() {
                   </div>
 
                   {/* Verbatim Quote — shared start edge with brand (no absolute offset) */}
-                  <blockquote className="border-s-2 border-[#161833]/15 ps-4">
+                  <blockquote className="border-s-2 border-[#1b1b1b]/15 ps-4">
                     <p className="font-sans text-xs sm:text-sm md:text-[14.5px] font-normal leading-relaxed text-foreground/90 sm:leading-[1.65]">
                       {quoteText}
                     </p>

@@ -41,7 +41,7 @@ export default function ProductDetails({ product, onBack }) {
           {/* Left Column: Visual Presentation (5 Cols) */}
           <div className="lg:col-span-5 bg-surface border border-line p-8 md:p-12 flex flex-col items-center justify-center sticky top-28">
             <div className="w-full flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-muted mb-8">
-              <span className="bg-[#161833] text-white px-2.5 py-0.5">
+              <span className="bg-[#1b1b1b] text-white px-2.5 py-0.5">
                 {product.brand || 'Five Group'}
               </span>
               <span>{specs.origin || 'Import'}</span>
@@ -135,7 +135,7 @@ export default function ProductDetails({ product, onBack }) {
 
               {isInquired ? (
                 <div className="py-6 text-center space-y-2">
-                  <span className="font-mono text-xs text-[#a3d2e2] bg-[#161833] px-3 py-1 uppercase tracking-widest inline-block">
+                  <span className="font-mono text-xs text-[#8abd3f] bg-[#1b1b1b] px-3 py-1 uppercase tracking-widest inline-block">
                     Inquiry Transmitted
                   </span>
                   <p className="text-sm text-muted font-light mt-2">
@@ -151,7 +151,7 @@ export default function ProductDetails({ product, onBack }) {
                       placeholder="Your Full Name"
                       value={inquiryForm.name}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, name: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                     />
                     <input
                       type="text"
@@ -159,7 +159,7 @@ export default function ProductDetails({ product, onBack }) {
                       placeholder="Company / Institution"
                       value={inquiryForm.company}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, company: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                     />
                   </div>
 
@@ -170,20 +170,20 @@ export default function ProductDetails({ product, onBack }) {
                       placeholder="Corporate Email"
                       value={inquiryForm.email}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, email: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                     />
                     <input
                       type="tel"
                       placeholder="Phone / WhatsApp"
                       value={inquiryForm.phone}
                       onChange={(e) => setInquiryForm({ ...inquiryForm, phone: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-2.5 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full font-mono text-xs uppercase tracking-[0.22em] bg-[#161833] text-white py-3.5 hover:bg-[#a3d2e2] hover:text-[#161833] transition"
+                    className="w-full font-mono text-xs uppercase tracking-[0.22em] bg-[#1b1b1b] text-white py-3.5 hover:bg-[#8abd3f] hover:text-[#1b1b1b] transition"
                   >
                     Request Pricing Schedule →
                   </button>

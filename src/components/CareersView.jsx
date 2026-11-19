@@ -90,7 +90,7 @@ export default function CareersView() {
                 className="bg-background p-8 flex flex-col justify-between hover:bg-surface transition-colors"
               >
                 <div>
-                  <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                  <span className="font-mono text-xs text-[#1b1b1b] font-semibold block mb-4">
                     0{idx + 1}
                   </span>
                   <h3 className="font-display text-xl font-normal text-foreground mb-3">
@@ -131,7 +131,7 @@ export default function CareersView() {
                 tabIndex={0}
               >
                 <div className="md:w-64 font-mono text-xs uppercase tracking-[0.2em] text-muted">
-                  <span className="text-[#161833] font-semibold">{job.department}</span>
+                  <span className="text-[#1b1b1b] font-semibold">{job.department}</span>
                   <br />
                   <span className="text-[11px]">{job.location} · {job.type}</span>
                 </div>
@@ -166,7 +166,7 @@ export default function CareersView() {
 
           {submitted ? (
             <div className="p-12 text-center bg-background border border-line space-y-3">
-              <span className="font-mono text-xs text-[#a3d2e2] bg-[#161833] px-3 py-1 uppercase tracking-widest inline-block">
+              <span className="font-mono text-xs text-[#8abd3f] bg-[#1b1b1b] px-3 py-1 uppercase tracking-widest inline-block">
                 Candidature Transmise
               </span>
               <h3 className="font-display text-2xl text-foreground font-normal">
@@ -189,7 +189,7 @@ export default function CareersView() {
                     placeholder="Candidate Name"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                   />
                 </div>
                 <div>
@@ -202,7 +202,7 @@ export default function CareersView() {
                     placeholder="candidate@email.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                   />
                 </div>
               </div>
@@ -218,7 +218,7 @@ export default function CareersView() {
                     placeholder="+974 ...."
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                   />
                 </div>
                 <div>
@@ -229,7 +229,7 @@ export default function CareersView() {
                     type="text"
                     value={formData.role}
                     onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                    className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                   />
                 </div>
               </div>
@@ -243,13 +243,13 @@ export default function CareersView() {
                   placeholder="Outline your background, certifications, and years in FMCG or logistics..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none rounded-[1px]"
+                  className="w-full bg-surface border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none rounded-[1px]"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full font-mono text-xs uppercase tracking-[0.24em] bg-[#161833] text-white py-4 hover:bg-[#a3d2e2] hover:text-[#161833] transition-all duration-300"
+                className="w-full font-mono text-xs uppercase tracking-[0.24em] bg-[#1b1b1b] text-white py-4 hover:bg-[#8abd3f] hover:text-[#1b1b1b] transition-all duration-300"
               >
                 Submit Dossier →
               </button>

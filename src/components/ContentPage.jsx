@@ -22,7 +22,7 @@ export default function ContentPage({ pageId, onNavigate }) {
           <button
             type="button"
             onClick={() => onNavigate?.('home')}
-            className="font-mono text-xs uppercase tracking-[0.22em] bg-[#161833] text-white px-6 py-3 hover:bg-[#a3d2e2] hover:text-[#161833] transition"
+            className="font-mono text-xs uppercase tracking-[0.22em] bg-[#1b1b1b] text-white px-6 py-3 hover:bg-[#8abd3f] hover:text-[#1b1b1b] transition"
           >
             Return to Home →
           </button>
@@ -73,7 +73,7 @@ export default function ContentPage({ pageId, onNavigate }) {
               {page.sections.map((sec, idx) => (
                 <div key={sec.title} className="bg-background p-8 md:p-12 flex flex-col justify-between hover:bg-surface transition-colors">
                   <div>
-                    <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                    <span className="font-mono text-xs text-[#1b1b1b] font-semibold block mb-4">
                       0{idx + 1}
                     </span>
                     <h3 className="font-display text-2xl font-normal text-foreground mb-4">

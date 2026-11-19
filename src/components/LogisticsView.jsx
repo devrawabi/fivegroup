@@ -79,7 +79,7 @@ export default function LogisticsView() {
                 className="bg-background p-8 md:p-10 flex flex-col justify-between hover:bg-surface transition-colors"
               >
                 <div>
-                  <span className="font-mono text-xs text-[#161833] font-semibold block mb-4">
+                  <span className="font-mono text-xs text-[#1b1b1b] font-semibold block mb-4">
                     Zone 0{idx + 1}
                   </span>
                   <h3 className="font-display text-xl font-normal text-foreground mb-3">
@@ -112,7 +112,7 @@ export default function LogisticsView() {
             {WAREHOUSE_FACILITIES.map((fac) => (
               <div key={fac.id} className="bg-background p-8 md:p-10 flex flex-col justify-between">
                 <div>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#a3d2e2] bg-[#161833] px-2.5 py-1 inline-block mb-4">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#8abd3f] bg-[#1b1b1b] px-2.5 py-1 inline-block mb-4">
                     {fac.detail}
                   </span>
                   <h3 className="font-display text-2xl font-normal text-foreground mb-2">

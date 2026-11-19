@@ -72,8 +72,8 @@ export default function Hero() {
           </video>
         </motion.div>
 
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-[#161833]/75 via-[#161833]/40 to-transparent" />
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#161833]/45 via-[#161833]/20 to-[#161833]/80" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-[#1b1b1b]/75 via-[#1b1b1b]/40 to-transparent" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1b1b1b]/45 via-[#1b1b1b]/20 to-[#1b1b1b]/80" />
 
         <motion.div
           data-hero-tint="true"

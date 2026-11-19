@@ -19,7 +19,7 @@ function ProductCard({ prod, onProductClick }) {
     >
       {/* Top Tag: Brand / Origin in JetBrains Mono */}
       <div className="flex items-center justify-between mb-4">
-        <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white bg-[#161833] px-2.5 py-0.5 rounded-[1px]">
+        <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white bg-[#1b1b1b] px-2.5 py-0.5 rounded-[1px]">
           {prod.brand || 'Five Group'}
         </span>
         {prod.origin && (
@@ -137,7 +137,7 @@ export default function Products({
             <button
               type="button"
               onClick={onViewAllProducts}
-              className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-foreground hover:text-[#161833] transition-colors pb-1 border-b border-foreground/30 hover:border-foreground self-start md:self-auto"
+              className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-foreground hover:text-[#1b1b1b] transition-colors pb-1 border-b border-foreground/30 hover:border-foreground self-start md:self-auto"
             >
               <span>View Full Catalog ({allProducts.length}+)</span>
               <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
@@ -159,7 +159,7 @@ export default function Products({
             >
               All Categories
               <span
-                className={`absolute -bottom-2 left-0 h-0.5 w-full bg-[#161833] transition-transform duration-300 ${
+                className={`absolute -bottom-2 left-0 h-0.5 w-full bg-[#1b1b1b] transition-transform duration-300 ${
                   activeCategory === 'all' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                 }`}
               />
@@ -180,7 +180,7 @@ export default function Products({
                 >
                   {cat.name}
                   <span
-                    className={`absolute -bottom-2 left-0 h-0.5 w-full bg-[#161833] transition-transform duration-300 ${
+                    className={`absolute -bottom-2 left-0 h-0.5 w-full bg-[#1b1b1b] transition-transform duration-300 ${
                       isSelected ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
                     }`}
                   />

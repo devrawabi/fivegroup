@@ -147,7 +147,7 @@ export function LanguageProvider({ children }) {
       <div
         ref={langCurtainRef}
         aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[90] bg-[#161833]"
+        className="pointer-events-none fixed inset-0 z-[90] bg-[#8abd3f]"
         style={{ willChange: 'transform', transform: 'translateY(100%)' }}
       />
     </LanguageContext.Provider>

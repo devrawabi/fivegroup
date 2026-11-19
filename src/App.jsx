@@ -25,7 +25,7 @@ function PageFallback() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-background text-muted">
       <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.24em]">
-        <span className="size-2 rounded-full bg-[#a3d2e2] animate-ping" />
+        <span className="size-2 rounded-full bg-[#8abd3f] animate-ping" />
         <span>Loading Perspective</span>
       </div>
     </div>
@@ -277,7 +277,7 @@ function AppInner() {
       </main>
 
       {/* Editorial Footer - exact BGS Law structure & bilingual adaptation */}
-      <footer className="border-t border-white/10 bg-[#161833] px-6 text-white md:px-12">
+      <footer className="border-t border-white/10 bg-[#1b1b1b] px-6 text-white md:px-12">
         <div className="mx-auto max-w-[1400px] py-16 md:py-24">
           <div className="grid items-start gap-12 md:grid-cols-12 md:gap-x-8">
             <div className="md:col-span-5">
@@ -301,14 +301,14 @@ function AppInner() {
                   {t('hours')}
                 </span>
               </div>
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[#a3d2e2]/70">
+              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.2em] text-[#8abd3f]/70">
                 {t('hubAddress')}
               </p>
             </div>
 
             <div className="space-y-10 md:col-span-3 md:col-start-7">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2]/80">
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#8abd3f]/80">
                   {t('footerAddress')}
                 </p>
                 <address className="mt-3 text-sm not-italic leading-relaxed text-white/85 font-light">
@@ -322,7 +322,7 @@ function AppInner() {
                 </address>
               </div>
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2]/80">
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#8abd3f]/80">
                   {t('footerHours')}
                 </p>
                 <p className="mt-3 text-sm text-white/85 font-light">
@@ -333,14 +333,14 @@ function AppInner() {
 
             <div className="space-y-10 md:col-span-3">
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2]/80">
+                <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#8abd3f]/80">
                   {t('footerContact')}
                 </p>
                 <ul className="mt-3 space-y-2 text-sm text-white/85 font-light">
                   <li>
                     <a
                       href="tel:+97444513537"
-                      className="transition duration-200 hover:text-[#a3d2e2] font-mono text-xs"
+                      className="transition duration-200 hover:text-[#8abd3f] font-mono text-xs"
                       dir="ltr"
                     >
                       +974 4451 3537
@@ -349,7 +349,7 @@ function AppInner() {
                   <li>
                     <a
                       href="mailto:info@fivegrouptrading.com"
-                      className="transition duration-200 hover:text-[#a3d2e2] font-mono text-xs"
+                      className="transition duration-200 hover:text-[#8abd3f] font-mono text-xs"
                       dir="ltr"
                     >
                       info@fivegrouptrading.com

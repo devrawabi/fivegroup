@@ -24,9 +24,9 @@ export default function ContactView() {
   return (
     <div className="bg-background text-foreground">
       {/* 1. Dark Midnight Navy Header matching BGS Law (/contact) */}
-      <section className="relative flex min-h-[45vh] flex-col justify-end bg-[#161833] text-white px-6 pt-32 pb-16 md:px-12 md:pb-20">
+      <section className="relative flex min-h-[45vh] flex-col justify-end bg-[#1b1b1b] text-white px-6 pt-32 pb-16 md:px-12 md:pb-20">
         <div className="mx-auto max-w-[1400px] w-full">
-          <div className="mb-4 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-[#a3d2e2]">
+          <div className="mb-4 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-[#8abd3f]">
             Contact · Prendre Contact
           </div>
           <h1 className="font-display text-[clamp(2.2rem,5vw,4.8rem)] leading-[1.03] tracking-tight font-[450] text-white">
@@ -46,7 +46,7 @@ export default function ContactView() {
           {/* Left Column: Coordinates & Hours (5 Cols) */}
           <div className="md:col-span-5 space-y-12">
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#161833] font-semibold mb-3">
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#1b1b1b] font-semibold mb-3">
                 Headquarters · Siège Social
               </p>
               <address className="not-italic text-sm md:text-base leading-relaxed text-muted font-light">
@@ -62,7 +62,7 @@ export default function ContactView() {
                 href="https://maps.google.com/?q=Birkat+Al+Awamer+Doha+Qatar"
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[#161833] hover:text-[#a3d2e2] transition"
+                className="mt-4 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-[#1b1b1b] hover:text-[#8abd3f] transition"
               >
                 <span>Google Maps Directions</span>
                 <span>↗</span>
@@ -70,7 +70,7 @@ export default function ContactView() {
             </div>
 
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#161833] font-semibold mb-3">
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#1b1b1b] font-semibold mb-3">
                 Direct Communications
               </p>
               <ul className="space-y-3 font-mono text-xs text-muted">
@@ -97,7 +97,7 @@ export default function ContactView() {
             </div>
 
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#161833] font-semibold mb-3">
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-[#1b1b1b] font-semibold mb-3">
                 Operating Schedule
               </p>
               <p className="font-mono text-xs text-muted">
@@ -119,7 +119,7 @@ export default function ContactView() {
 
             {submitted ? (
               <div className="py-12 text-center space-y-4">
-                <span className="font-mono text-xs text-[#a3d2e2] bg-[#161833] px-3 py-1 uppercase tracking-widest inline-block">
+                <span className="font-mono text-xs text-[#8abd3f] bg-[#1b1b1b] px-3 py-1 uppercase tracking-widest inline-block">
                   Transmis avec Succès
                 </span>
                 <h3 className="font-display text-2xl font-normal text-foreground">
@@ -143,7 +143,7 @@ export default function ContactView() {
                       placeholder="e.g. LuLu Hypermarket / Grand Hotel"
                       value={formData.companyName}
                       onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none transition rounded-[1px]"
                     />
                   </div>
 
@@ -157,7 +157,7 @@ export default function ContactView() {
                       placeholder="e.g. Alexander Vance"
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none transition rounded-[1px]"
                     />
                   </div>
                 </div>
@@ -173,7 +173,7 @@ export default function ContactView() {
                       placeholder="name@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none transition rounded-[1px]"
                     />
                   </div>
 
@@ -186,7 +186,7 @@ export default function ContactView() {
                       placeholder="+974 ...."
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                      className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none transition rounded-[1px]"
                     />
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export default function ContactView() {
                   <select
                     value={formData.interest}
                     onChange={(e) => setFormData({ ...formData, interest: e.target.value })}
-                    className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                    className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none transition rounded-[1px]"
                   >
                     <option value="Retail Distribution">Retail &amp; Hypermarket Listing</option>
                     <option value="HORECA Supply">HORECA &amp; Foodservice Provisioning</option>
@@ -217,13 +217,13 @@ export default function ContactView() {
                     placeholder="Provide details regarding volumes, SKUs, or scheduled replenishment requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#161833] focus:outline-none transition rounded-[1px]"
+                    className="w-full bg-background border border-line px-4 py-3 text-sm text-foreground focus:border-[#1b1b1b] focus:outline-none transition rounded-[1px]"
                   />
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full font-mono text-xs uppercase tracking-[0.24em] bg-[#161833] text-white py-4 hover:bg-[#a3d2e2] hover:text-[#161833] transition-all duration-300"
+                  className="w-full font-mono text-xs uppercase tracking-[0.24em] bg-[#1b1b1b] text-white py-4 hover:bg-[#8abd3f] hover:text-[#1b1b1b] transition-all duration-300"
                 >
                   Submit Inquiry →
                 </button>

@@ -7,34 +7,24 @@ import FlagIcon from '@/components/ui/FlagIcon';
 const WHAT_WE_DO_CHILDREN = [
   {
     id: 'business-categories',
+    key: 'retail',
     label: 'Retail',
     labelAr: 'التجزئة',
     labelFr: 'Retail',
   },
   {
     id: 'business-categories',
+    key: 'horeca',
     label: 'HORECA',
     labelAr: 'الفنادق والمطاعم',
     labelFr: 'HORECA',
-    key: 'horeca',
   },
   {
-    id: 'business-logistics',
-    label: 'Logistics & Hub',
-    labelAr: 'اللوجستية والأسطول',
-    labelFr: 'Logistique',
-  },
-  {
-    id: 'brands-featured',
-    label: 'Brand Portfolio',
-    labelAr: 'محفظة العلامات',
-    labelFr: 'Marques',
-  },
-  {
-    id: 'business-import-export',
-    label: 'Import & Export',
-    labelAr: 'الاستيراد والتصدير',
-    labelFr: 'Import & Export',
+    id: 'business-fmcg',
+    key: 'wholesale',
+    label: 'Wholesale',
+    labelAr: 'الجملة',
+    labelFr: 'Wholesale',
   },
 ];
 
@@ -57,11 +47,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
 
   const whatWeDoChildIds = [
     'business-categories',
-    'business-logistics',
-    'brands-featured',
-    'business-import-export',
     'business-fmcg',
-    'business-portfolio',
   ];
   const isWhatWeDoActive = whatWeDoChildIds.includes(currentPage);
 
@@ -131,7 +117,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
         ? 'text-foreground font-semibold'
         : 'text-foreground/75 hover:text-foreground';
 
-  const underlineColorClass = isTransparentDark ? 'bg-[#a3d2e2]' : 'bg-[#161833]';
+  const underlineColorClass = isTransparentDark ? 'bg-[#8abd3f]' : 'bg-[#1b1b1b]';
 
   const renderNavLink = (item) => {
     const isActive =
@@ -238,9 +224,9 @@ export default function Navbar({ activeTab, setActiveTab }) {
         transition={{ duration: 0.55, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
         className={`fixed inset-x-0 top-0 z-50 px-6 transition-all duration-300 md:px-12 ${
           isMenuOpen
-            ? 'bg-[#161833]'
+            ? 'bg-[#1b1b1b]'
             : isTransparentDark
-              ? 'bg-gradient-to-b from-[#161833]/75 via-[#161833]/40 to-transparent backdrop-blur-[1px]'
+              ? 'bg-gradient-to-b from-[#1b1b1b]/75 via-[#1b1b1b]/40 to-transparent backdrop-blur-[1px]'
               : 'bg-white/95 backdrop-blur-md shadow-[0_1px_3px_rgba(0,0,0,0.04)]'
         }`}
       >
@@ -374,7 +360,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
       </motion.header>
 
       <div
-        className={`fixed inset-0 z-40 bg-[#161833] text-white transition-all duration-500 md:hidden flex flex-col justify-between px-6 pt-24 pb-12 ${
+        className={`fixed inset-0 z-40 bg-[#1b1b1b] text-white transition-all duration-500 md:hidden flex flex-col justify-between px-6 pt-24 pb-12 ${
           isMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         }`}
       >
@@ -409,13 +395,13 @@ export default function Navbar({ activeTab, setActiveTab }) {
                     aria-expanded={mobileWhatWeDoOpen}
                   >
                     <div className="flex items-baseline gap-4">
-                      <span className="font-mono text-xs text-[#a3d2e2]">0{index + 1}</span>
+                      <span className="font-mono text-xs text-[#8abd3f]">0{index + 1}</span>
                       <span className="font-display text-2xl font-light tracking-tight text-white/90">
                         {displayLabel}
                       </span>
                     </div>
                     <span
-                      className={`font-mono text-xs text-[#a3d2e2] transition-transform ${
+                      className={`font-mono text-xs text-[#8abd3f] transition-transform ${
                         mobileWhatWeDoOpen ? 'rotate-180' : ''
                       }`}
                     >
@@ -434,7 +420,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
                               e.preventDefault();
                               handleNavClick(child.id, `${child.label} · ${child.labelFr}`);
                             }}
-                            className="block font-mono text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#a3d2e2]"
+                            className="block font-mono text-xs uppercase tracking-[0.2em] text-white/70 hover:text-[#8abd3f]"
                           >
                             {childLabel}
                           </a>
@@ -457,12 +443,12 @@ export default function Navbar({ activeTab, setActiveTab }) {
                 className="group flex items-baseline justify-between border-b border-white/10 pb-4"
               >
                 <div className="flex items-baseline gap-4">
-                  <span className="font-mono text-xs text-[#a3d2e2]">0{index + 1}</span>
+                  <span className="font-mono text-xs text-[#8abd3f]">0{index + 1}</span>
                   <span className="font-display text-2xl font-light tracking-tight text-white/90 group-hover:text-white">
                     {displayLabel}
                   </span>
                 </div>
-                <span className="font-mono text-xs text-[#a3d2e2] opacity-0 group-hover:opacity-100 transition-opacity">
+                <span className="font-mono text-xs text-[#8abd3f] opacity-0 group-hover:opacity-100 transition-opacity">
                   →
                 </span>
               </a>
@@ -472,7 +458,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
 
         <div className="border-t border-white/15 pt-6 space-y-4 font-mono text-xs text-white/60">
           <div className="flex items-center justify-between">
-            <span className="tracking-widest uppercase text-[#a3d2e2]">
+            <span className="tracking-widest uppercase text-[#8abd3f]">
               {language === 'ar' ? 'بركة العوامر · الدوحة' : 'Birkat Al Awamer · Doha, Qatar'}
             </span>
 
@@ -494,7 +480,7 @@ export default function Navbar({ activeTab, setActiveTab }) {
           <button
             type="button"
             onClick={() => handleNavClick('contact-us', 'Contact Us · Contact')}
-            className="w-full mt-2 py-3 border border-[#a3d2e2] text-[#a3d2e2] text-center uppercase tracking-widest hover:bg-[#a3d2e2] hover:text-[#161833] transition"
+            className="w-full mt-2 py-3 border border-[#8abd3f] text-[#8abd3f] text-center uppercase tracking-widest hover:bg-[#8abd3f] hover:text-[#1b1b1b] transition"
           >
             {t('navContact')}
           </button>

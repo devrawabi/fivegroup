@@ -46,7 +46,7 @@ export default function NewsDetails({
           <div className="flex items-center gap-3 font-mono text-xs uppercase tracking-[0.2em] text-muted mb-4">
             <span>{article.date || '2026'}</span>
             <span>·</span>
-            <span className="text-[#161833] font-semibold">{article.tag || 'Official Bulletin'}</span>
+            <span className="text-[#1b1b1b] font-semibold">{article.tag || 'Official Bulletin'}</span>
           </div>
 
           <h1 className="font-display text-3xl md:text-5xl font-normal text-foreground leading-[1.08] tracking-tight">
@@ -119,7 +119,7 @@ export default function NewsDetails({
                 <div
                   key={item.id}
                   onClick={() => onNewsClick?.(item)}
-                  className="border-b border-line py-5 flex items-baseline justify-between hover:text-[#161833] cursor-pointer group"
+                  className="border-b border-line py-5 flex items-baseline justify-between hover:text-[#1b1b1b] cursor-pointer group"
                 >
                   <span className="font-display text-base md:text-lg font-normal group-hover:translate-x-1 transition-transform">
                     {item.title}

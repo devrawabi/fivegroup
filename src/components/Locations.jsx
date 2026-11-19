@@ -35,11 +35,11 @@ export default function Locations({ onInquire }) {
   ];
 
   return (
-    <section className="border-t border-white/10 bg-[#161833] text-white px-6 py-24 md:px-12 md:py-32" id="logistics">
+    <section className="border-t border-white/10 bg-[#1b1b1b] text-white px-6 py-24 md:px-12 md:py-32" id="logistics">
       <div className="mx-auto max-w-[1400px]">
         {/* Section Header */}
         <div className="mb-16">
-          <div className="mb-3 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-[#a3d2e2]">
+          <div className="mb-3 font-mono text-[11px] md:text-xs uppercase tracking-[0.24em] text-[#8abd3f]">
             Strategic Logistics · Hubs &amp; Flotte
           </div>
           <h2 className="font-display text-[clamp(1.7rem,4vw,3.6rem)] leading-[1.04] tracking-tight font-[450] text-white">
@@ -54,39 +54,39 @@ export default function Locations({ onInquire }) {
 
         {/* Technical Specification Matrix in JetBrains Mono */}
         <div className="mb-16 grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10">
-          <div className="bg-[#161833] p-6 md:p-8">
+          <div className="bg-[#1b1b1b] p-6 md:p-8">
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/50 block mb-2">
               Storage Capacity
             </span>
             <p className="font-display text-2xl md:text-3xl font-medium text-white tracking-tight">
-              16,000+ <span className="text-sm font-mono text-[#a3d2e2]">sqm</span>
+              16,000+ <span className="text-sm font-mono text-[#8abd3f]">sqm</span>
             </p>
           </div>
 
-          <div className="bg-[#161833] p-6 md:p-8">
+          <div className="bg-[#1b1b1b] p-6 md:p-8">
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/50 block mb-2">
               Thermal Control
             </span>
             <p className="font-display text-2xl md:text-3xl font-medium text-white tracking-tight">
-              -20°C <span className="text-sm font-mono text-[#a3d2e2]">to</span> +25°C
+              -20°C <span className="text-sm font-mono text-[#8abd3f]">to</span> +25°C
             </p>
           </div>
 
-          <div className="bg-[#161833] p-6 md:p-8">
+          <div className="bg-[#1b1b1b] p-6 md:p-8">
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/50 block mb-2">
               Dispatch SLA
             </span>
             <p className="font-display text-2xl md:text-3xl font-medium text-white tracking-tight">
-              99.4% <span className="text-sm font-mono text-[#a3d2e2]">on-time</span>
+              99.4% <span className="text-sm font-mono text-[#8abd3f]">on-time</span>
             </p>
           </div>
 
-          <div className="bg-[#161833] p-6 md:p-8">
+          <div className="bg-[#1b1b1b] p-6 md:p-8">
             <span className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/50 block mb-2">
               Nationwide Doors
             </span>
             <p className="font-display text-2xl md:text-3xl font-medium text-white tracking-tight">
-              1,200+ <span className="text-sm font-mono text-[#a3d2e2]">retailers</span>
+              1,200+ <span className="text-sm font-mono text-[#8abd3f]">retailers</span>
             </p>
           </div>
         </div>
@@ -96,7 +96,7 @@ export default function Locations({ onInquire }) {
           {facilities.map((fac) => (
             <div
               key={fac.id}
-              className="bg-[#161833] flex flex-col group hover:bg-[#1a1d3d] transition-colors"
+              className="bg-[#1b1b1b] flex flex-col group hover:bg-[#1a1d3d] transition-colors"
             >
               {/* Image Frame */}
               <div className="relative aspect-video w-full overflow-hidden bg-black/40">
@@ -107,7 +107,7 @@ export default function Locations({ onInquire }) {
                   loading="lazy"
                   decoding="async"
                 />
-                <div className="absolute top-4 left-4 font-mono text-[9px] uppercase tracking-[0.22em] text-[#161833] bg-[#a3d2e2] px-2 py-0.5 font-medium">
+                <div className="absolute top-4 left-4 font-mono text-[9px] uppercase tracking-[0.22em] text-[#1b1b1b] bg-[#8abd3f] px-2 py-0.5 font-medium">
                   {fac.badge}
                 </div>
               </div>
@@ -115,7 +115,7 @@ export default function Locations({ onInquire }) {
               {/* Text Info */}
               <div className="p-7 md:p-9 flex flex-col flex-1">
                 <h3 className="font-display text-xl font-normal text-white">{fac.title}</h3>
-                <p className="mt-3 text-xs leading-relaxed text-[#a3d2e2] font-mono tracking-wide">
+                <p className="mt-3 text-xs leading-relaxed text-[#8abd3f] font-mono tracking-wide">
                   {fac.specs}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-white/70 font-light flex-1">
@@ -126,7 +126,7 @@ export default function Locations({ onInquire }) {
                   <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-white/50">
                     Location Verified
                   </span>
-                  <span className="font-mono text-xs text-[#a3d2e2] group-hover:translate-x-1.5 transition-transform">
+                  <span className="font-mono text-xs text-[#8abd3f] group-hover:translate-x-1.5 transition-transform">
                     →
                   </span>
                 </div>
@@ -144,7 +144,7 @@ export default function Locations({ onInquire }) {
           <button
             type="button"
             onClick={onInquire}
-            className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-[#a3d2e2] hover:text-white transition-colors"
+            className="group inline-flex items-center gap-3 font-mono text-xs uppercase tracking-[0.22em] text-[#8abd3f] hover:text-white transition-colors"
           >
             <span>Inquire About Cold-Chain Allocation</span>
             <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>

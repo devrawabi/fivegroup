@@ -60,7 +60,7 @@ export default function BrandPortfolioGrid() {
               onClick={() => setActive(filter.slug)}
               className={`font-mono text-xs uppercase tracking-[0.18em] px-4 py-2 transition-all ${
                 active === filter.slug
-                  ? 'bg-[#161833] text-white'
+                  ? 'bg-[#1b1b1b] text-white'
                   : 'bg-background border border-line text-muted hover:text-foreground'
               }`}
             >

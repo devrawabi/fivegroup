@@ -79,11 +79,11 @@ export function PageTransitionProvider({ children }) {
     <TransitionContext.Provider value={{ navigateWithTransition, isTransitioning }}>
       {children}
 
-      {/* Pure Midnight Navy Page Transition Curtain matching BGS Law */}
+      {/* Logo-green page transition curtain */}
       <div
         ref={curtainRef}
         aria-hidden={!isTransitioning}
-        className="pointer-events-none fixed inset-0 z-[80] bg-[#161833]"
+        className="pointer-events-none fixed inset-0 z-[80] bg-[#8abd3f]"
         style={{ willChange: 'transform', transform: 'translateY(100%)' }}
       />
     </TransitionContext.Provider>
